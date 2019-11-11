@@ -58,24 +58,6 @@ int main(int argc, char* argv[])
 
 void stencil(const int nx, const int ny, const int width, const int height,
              float* image, float* tmp_image)
-{ float tp_col, tp_row;
-  int max  = nx;
-  int Block = nx;
-  int Block2 = ny;
-  for (int ii = 1; ii< max+1; ii+=Block){
-    for (int jj = 1; jj< max+1; jj+=Block2){
-       for (int i = ii; i < ii+Block; ++i) {
-         for (int j = jj; j < jj+Block2; ++j) {
-          tp_row = image[j     + i       * height] * 3.0f / 5.0f + image[j - 1 + i       * height] * 0.5f / 5.0f + image[j + 1 + i       * height] * 0.5f / 5.0f;
-          tp_col = image[j     + (i - 1) * height] * 0.5f / 5.0f + image[j     + (i + 1) * height] * 0.5f / 5.0f;
-          tmp_image[j + i * height] = tp_row + tp_col;
-          
-        }
-      }
-    }
-  }
-}
-/*
 { //2.4s
   // O3:1.19
   float tp_col, tp_row;
@@ -87,7 +69,7 @@ void stencil(const int nx, const int ny, const int width, const int height,
     }
   }
 }
-*/
+
 /*             
 {
   for (int j = 1; j < ny + 1; ++j) {
