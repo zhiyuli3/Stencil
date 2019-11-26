@@ -12,4 +12,4 @@ stencil: stencil.c
 	# icc -O2 -no-vec -std=c99  stencil.c -o stencil
 	# icc -O3 -no-vec -std=c99  stencil.c -o stencil
 	# branch mpi
-	icc -Ofast -std=c99  stencil.c -o stencil
+	mpicc -O2 -std=c99  stencil.c -o stencil

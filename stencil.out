@@ -1,0 +1,929 @@
+Running on host compute087.bc4.acrc.priv
+Time is Tue Nov 26 00:24:02 GMT 2019
+Directory is /mnt/storage/home/fh19804/Stencil
+Slurm job ID is 2821089
+
+This job runs on the following machines:
+compute087
+
+ The rank split 0 successful!
+ The rank split 2 successful!
+ ***The rank 2 initialize begin *****/n !
+ ***The rank 0 initialize begin *****/n !
+ The rank split 1 successful!
+ ***The rank 1 initialize begin *****/n !
+ ***The rank 2 initialize success ***** !
+ The initial Halo ***The rank 2 send left successful ***** !
+ ***The rank 0 initialize success ***** !
+ The initial Halo ***The rank 1 initialize success ***** !
+ The initial Halo ***The rank 1 send left successful ***** !
+ ***The rank 0 receive right successful ***** !
+ ***The rank 1 receive right successful ***** !
+ ***The rank 1 send right successful ***** !
+ ***The rank 1 receive left successful ***** !
+ ***The rank 0 send right successful ***** !
+ ***The rank 2 receive left successful ***** !
+ *** The rank 2 's 0 interate begin ***** !
+ *** The rank 0 's 0 interate begin ***** !
+ *** The rank 1 's 0 interate begin ***** !
+ *** The rank 0 's 0 interate calucate successful! ***** !
+ *** The rank 1 's 0 interate calucate successful! ***** !
+ *** The rank 2 's 0 interate calucate successful! ***** !
+ *** The rank 0 's 0 interate successful ***** !
+ *** The rank 0 's 1 interate begin ***** !
+ *** The rank 1 's 0 interate successful ***** !
+ *** The rank 1 's 1 interate begin ***** !
+ *** The rank 2 's 0 interate successful ***** !
+ *** The rank 2 's 1 interate begin ***** !
+ *** The rank 0 's 1 interate calucate successful! ***** !
+ *** The rank 1 's 1 interate calucate successful! ***** !
+ *** The rank 2 's 1 interate calucate successful! ***** !
+ *** The rank 0 's 1 interate successful ***** !
+ *** The rank 0 's 2 interate begin ***** !
+ *** The rank 1 's 1 interate successful ***** !
+ *** The rank 1 's 2 interate begin ***** !
+ *** The rank 2 's 1 interate successful ***** !
+ *** The rank 2 's 2 interate begin ***** !
+ *** The rank 0 's 2 interate calucate successful! ***** !
+ *** The rank 1 's 2 interate calucate successful! ***** !
+ *** The rank 2 's 2 interate calucate successful! ***** !
+ *** The rank 0 's 2 interate successful ***** !
+ *** The rank 0 's 3 interate begin ***** !
+ *** The rank 1 's 2 interate successful ***** !
+ *** The rank 1 's 3 interate begin ***** !
+ *** The rank 2 's 2 interate successful ***** !
+ *** The rank 2 's 3 interate begin ***** !
+ *** The rank 0 's 3 interate calucate successful! ***** !
+ *** The rank 1 's 3 interate calucate successful! ***** !
+ *** The rank 2 's 3 interate calucate successful! ***** !
+ *** The rank 0 's 3 interate successful ***** !
+ *** The rank 0 's 4 interate begin ***** !
+ *** The rank 1 's 3 interate successful ***** !
+ *** The rank 1 's 4 interate begin ***** !
+ *** The rank 2 's 3 interate successful ***** !
+ *** The rank 2 's 4 interate begin ***** !
+ *** The rank 0 's 4 interate calucate successful! ***** !
+ *** The rank 1 's 4 interate calucate successful! ***** !
+ *** The rank 2 's 4 interate calucate successful! ***** !
+ *** The rank 0 's 4 interate successful ***** !
+ *** The rank 0 's 5 interate begin ***** !
+ *** The rank 1 's 4 interate successful ***** !
+ *** The rank 1 's 5 interate begin ***** !
+ *** The rank 2 's 4 interate successful ***** !
+ *** The rank 2 's 5 interate begin ***** !
+ *** The rank 0 's 5 interate calucate successful! ***** !
+ *** The rank 1 's 5 interate calucate successful! ***** !
+ *** The rank 2 's 5 interate calucate successful! ***** !
+ *** The rank 0 's 5 interate successful ***** !
+ *** The rank 0 's 6 interate begin ***** !
+ *** The rank 1 's 5 interate successful ***** !
+ *** The rank 1 's 6 interate begin ***** !
+ *** The rank 2 's 5 interate successful ***** !
+ *** The rank 2 's 6 interate begin ***** !
+ *** The rank 0 's 6 interate calucate successful! ***** !
+ *** The rank 1 's 6 interate calucate successful! ***** !
+ *** The rank 2 's 6 interate calucate successful! ***** !
+ *** The rank 0 's 6 interate successful ***** !
+ *** The rank 0 's 7 interate begin ***** !
+ *** The rank 1 's 6 interate successful ***** !
+ *** The rank 1 's 7 interate begin ***** !
+ *** The rank 2 's 6 interate successful ***** !
+ *** The rank 2 's 7 interate begin ***** !
+ *** The rank 0 's 7 interate calucate successful! ***** !
+ *** The rank 1 's 7 interate calucate successful! ***** !
+ *** The rank 2 's 7 interate calucate successful! ***** !
+ *** The rank 0 's 7 interate successful ***** !
+ *** The rank 0 's 8 interate begin ***** !
+ *** The rank 1 's 7 interate successful ***** !
+ *** The rank 1 's 8 interate begin ***** !
+ *** The rank 2 's 7 interate successful ***** !
+ *** The rank 2 's 8 interate begin ***** !
+ *** The rank 0 's 8 interate calucate successful! ***** !
+ *** The rank 1 's 8 interate calucate successful! ***** !
+ *** The rank 2 's 8 interate calucate successful! ***** !
+ *** The rank 0 's 8 interate successful ***** !
+ *** The rank 0 's 9 interate begin ***** !
+ *** The rank 1 's 8 interate successful ***** !
+ *** The rank 1 's 9 interate begin ***** !
+ *** The rank 2 's 8 interate successful ***** !
+ *** The rank 2 's 9 interate begin ***** !
+ *** The rank 0 's 9 interate calucate successful! ***** !
+ *** The rank 1 's 9 interate calucate successful! ***** !
+ *** The rank 2 's 9 interate calucate successful! ***** !
+ *** The rank 0 's 9 interate successful ***** !
+ *** The rank 0 's 10 interate begin ***** !
+ *** The rank 1 's 9 interate successful ***** !
+ *** The rank 1 's 10 interate begin ***** !
+ *** The rank 2 's 9 interate successful ***** !
+ *** The rank 2 's 10 interate begin ***** !
+ *** The rank 0 's 10 interate calucate successful! ***** !
+ *** The rank 1 's 10 interate calucate successful! ***** !
+ *** The rank 2 's 10 interate calucate successful! ***** !
+ *** The rank 0 's 10 interate successful ***** !
+ *** The rank 0 's 11 interate begin ***** !
+ *** The rank 1 's 10 interate successful ***** !
+ *** The rank 1 's 11 interate begin ***** !
+ *** The rank 2 's 10 interate successful ***** !
+ *** The rank 2 's 11 interate begin ***** !
+ *** The rank 0 's 11 interate calucate successful! ***** !
+ *** The rank 1 's 11 interate calucate successful! ***** !
+ *** The rank 2 's 11 interate calucate successful! ***** !
+ *** The rank 0 's 11 interate successful ***** !
+ *** The rank 0 's 12 interate begin ***** !
+ *** The rank 1 's 11 interate successful ***** !
+ *** The rank 1 's 12 interate begin ***** !
+ *** The rank 2 's 11 interate successful ***** !
+ *** The rank 2 's 12 interate begin ***** !
+ *** The rank 0 's 12 interate calucate successful! ***** !
+ *** The rank 1 's 12 interate calucate successful! ***** !
+ *** The rank 2 's 12 interate calucate successful! ***** !
+ *** The rank 0 's 12 interate successful ***** !
+ *** The rank 0 's 13 interate begin ***** !
+ *** The rank 1 's 12 interate successful ***** !
+ *** The rank 1 's 13 interate begin ***** !
+ *** The rank 2 's 12 interate successful ***** !
+ *** The rank 2 's 13 interate begin ***** !
+ *** The rank 0 's 13 interate calucate successful! ***** !
+ *** The rank 1 's 13 interate calucate successful! ***** !
+ *** The rank 2 's 13 interate calucate successful! ***** !
+ *** The rank 0 's 13 interate successful ***** !
+ *** The rank 0 's 14 interate begin ***** !
+ *** The rank 1 's 13 interate successful ***** !
+ *** The rank 1 's 14 interate begin ***** !
+ *** The rank 2 's 13 interate successful ***** !
+ *** The rank 2 's 14 interate begin ***** !
+ *** The rank 0 's 14 interate calucate successful! ***** !
+ *** The rank 1 's 14 interate calucate successful! ***** !
+ *** The rank 2 's 14 interate calucate successful! ***** !
+ *** The rank 0 's 14 interate successful ***** !
+ *** The rank 0 's 15 interate begin ***** !
+ *** The rank 1 's 14 interate successful ***** !
+ *** The rank 1 's 15 interate begin ***** !
+ *** The rank 2 's 14 interate successful ***** !
+ *** The rank 2 's 15 interate begin ***** !
+ *** The rank 0 's 15 interate calucate successful! ***** !
+ *** The rank 1 's 15 interate calucate successful! ***** !
+ *** The rank 2 's 15 interate calucate successful! ***** !
+ *** The rank 0 's 15 interate successful ***** !
+ *** The rank 0 's 16 interate begin ***** !
+ *** The rank 1 's 15 interate successful ***** !
+ *** The rank 1 's 16 interate begin ***** !
+ *** The rank 2 's 15 interate successful ***** !
+ *** The rank 2 's 16 interate begin ***** !
+ *** The rank 0 's 16 interate calucate successful! ***** !
+ *** The rank 1 's 16 interate calucate successful! ***** !
+ *** The rank 2 's 16 interate calucate successful! ***** !
+ *** The rank 0 's 16 interate successful ***** !
+ *** The rank 0 's 17 interate begin ***** !
+ *** The rank 1 's 16 interate successful ***** !
+ *** The rank 1 's 17 interate begin ***** !
+ *** The rank 2 's 16 interate successful ***** !
+ *** The rank 2 's 17 interate begin ***** !
+ *** The rank 0 's 17 interate calucate successful! ***** !
+ *** The rank 1 's 17 interate calucate successful! ***** !
+ *** The rank 2 's 17 interate calucate successful! ***** !
+ *** The rank 0 's 17 interate successful ***** !
+ *** The rank 0 's 18 interate begin ***** !
+ *** The rank 1 's 17 interate successful ***** !
+ *** The rank 1 's 18 interate begin ***** !
+ *** The rank 2 's 17 interate successful ***** !
+ *** The rank 2 's 18 interate begin ***** !
+ *** The rank 0 's 18 interate calucate successful! ***** !
+ *** The rank 1 's 18 interate calucate successful! ***** !
+ *** The rank 2 's 18 interate calucate successful! ***** !
+ *** The rank 0 's 18 interate successful ***** !
+ *** The rank 0 's 19 interate begin ***** !
+ *** The rank 1 's 18 interate successful ***** !
+ *** The rank 1 's 19 interate begin ***** !
+ *** The rank 2 's 18 interate successful ***** !
+ *** The rank 2 's 19 interate begin ***** !
+ *** The rank 0 's 19 interate calucate successful! ***** !
+ *** The rank 1 's 19 interate calucate successful! ***** !
+ *** The rank 2 's 19 interate calucate successful! ***** !
+ *** The rank 0 's 19 interate successful ***** !
+ *** The rank 0 's 20 interate begin ***** !
+ *** The rank 1 's 19 interate successful ***** !
+ *** The rank 1 's 20 interate begin ***** !
+ *** The rank 2 's 19 interate successful ***** !
+ *** The rank 2 's 20 interate begin ***** !
+ *** The rank 0 's 20 interate calucate successful! ***** !
+ *** The rank 1 's 20 interate calucate successful! ***** !
+ *** The rank 2 's 20 interate calucate successful! ***** !
+ *** The rank 0 's 20 interate successful ***** !
+ *** The rank 0 's 21 interate begin ***** !
+ *** The rank 1 's 20 interate successful ***** !
+ *** The rank 1 's 21 interate begin ***** !
+ *** The rank 2 's 20 interate successful ***** !
+ *** The rank 2 's 21 interate begin ***** !
+ *** The rank 0 's 21 interate calucate successful! ***** !
+ *** The rank 1 's 21 interate calucate successful! ***** !
+ *** The rank 2 's 21 interate calucate successful! ***** !
+ *** The rank 0 's 21 interate successful ***** !
+ *** The rank 0 's 22 interate begin ***** !
+ *** The rank 1 's 21 interate successful ***** !
+ *** The rank 1 's 22 interate begin ***** !
+ *** The rank 2 's 21 interate successful ***** !
+ *** The rank 2 's 22 interate begin ***** !
+ *** The rank 0 's 22 interate calucate successful! ***** !
+ *** The rank 1 's 22 interate calucate successful! ***** !
+ *** The rank 2 's 22 interate calucate successful! ***** !
+ *** The rank 0 's 22 interate successful ***** !
+ *** The rank 0 's 23 interate begin ***** !
+ *** The rank 1 's 22 interate successful ***** !
+ *** The rank 1 's 23 interate begin ***** !
+ *** The rank 2 's 22 interate successful ***** !
+ *** The rank 2 's 23 interate begin ***** !
+ *** The rank 1 's 23 interate calucate successful! ***** !
+ *** The rank 0 's 23 interate calucate successful! ***** !
+ *** The rank 2 's 23 interate calucate successful! ***** !
+ *** The rank 0 's 23 interate successful ***** !
+ *** The rank 0 's 24 interate begin ***** !
+ *** The rank 1 's 23 interate successful ***** !
+ *** The rank 1 's 24 interate begin ***** !
+ *** The rank 2 's 23 interate successful ***** !
+ *** The rank 2 's 24 interate begin ***** !
+ *** The rank 1 's 24 interate calucate successful! ***** !
+ *** The rank 2 's 24 interate calucate successful! ***** !
+ *** The rank 0 's 24 interate calucate successful! ***** !
+ *** The rank 2 's 24 interate successful ***** !
+ *** The rank 2 's 25 interate begin ***** !
+ *** The rank 0 's 24 interate successful ***** !
+ *** The rank 0 's 25 interate begin ***** !
+ *** The rank 1 's 24 interate successful ***** !
+ *** The rank 1 's 25 interate begin ***** !
+ *** The rank 1 's 25 interate calucate successful! ***** !
+ *** The rank 2 's 25 interate calucate successful! ***** !
+ *** The rank 0 's 25 interate calucate successful! ***** !
+ *** The rank 0 's 25 interate successful ***** !
+ *** The rank 0 's 26 interate begin ***** !
+ *** The rank 1 's 25 interate successful ***** !
+ *** The rank 1 's 26 interate begin ***** !
+ *** The rank 2 's 25 interate successful ***** !
+ *** The rank 2 's 26 interate begin ***** !
+ *** The rank 1 's 26 interate calucate successful! ***** !
+ *** The rank 2 's 26 interate calucate successful! ***** !
+ *** The rank 0 's 26 interate calucate successful! ***** !
+ *** The rank 0 's 26 interate successful ***** !
+ *** The rank 0 's 27 interate begin ***** !
+ *** The rank 1 's 26 interate successful ***** !
+ *** The rank 1 's 27 interate begin ***** !
+ *** The rank 2 's 26 interate successful ***** !
+ *** The rank 2 's 27 interate begin ***** !
+ *** The rank 1 's 27 interate calucate successful! ***** !
+ *** The rank 2 's 27 interate calucate successful! ***** !
+ *** The rank 0 's 27 interate calucate successful! ***** !
+ *** The rank 0 's 27 interate successful ***** !
+ *** The rank 0 's 28 interate begin ***** !
+ *** The rank 1 's 27 interate successful ***** !
+ *** The rank 1 's 28 interate begin ***** !
+ *** The rank 2 's 27 interate successful ***** !
+ *** The rank 2 's 28 interate begin ***** !
+ *** The rank 1 's 28 interate calucate successful! ***** !
+ *** The rank 2 's 28 interate calucate successful! ***** !
+ *** The rank 0 's 28 interate calucate successful! ***** !
+ *** The rank 0 's 28 interate successful ***** !
+ *** The rank 0 's 29 interate begin ***** !
+ *** The rank 1 's 28 interate successful ***** !
+ *** The rank 1 's 29 interate begin ***** !
+ *** The rank 2 's 28 interate successful ***** !
+ *** The rank 2 's 29 interate begin ***** !
+ *** The rank 1 's 29 interate calucate successful! ***** !
+ *** The rank 2 's 29 interate calucate successful! ***** !
+ *** The rank 0 's 29 interate calucate successful! ***** !
+ *** The rank 0 's 29 interate successful ***** !
+ *** The rank 0 's 30 interate begin ***** !
+ *** The rank 1 's 29 interate successful ***** !
+ *** The rank 1 's 30 interate begin ***** !
+ *** The rank 2 's 29 interate successful ***** !
+ *** The rank 2 's 30 interate begin ***** !
+ *** The rank 1 's 30 interate calucate successful! ***** !
+ *** The rank 2 's 30 interate calucate successful! ***** !
+ *** The rank 0 's 30 interate calucate successful! ***** !
+ *** The rank 0 's 30 interate successful ***** !
+ *** The rank 0 's 31 interate begin ***** !
+ *** The rank 1 's 30 interate successful ***** !
+ *** The rank 1 's 31 interate begin ***** !
+ *** The rank 2 's 30 interate successful ***** !
+ *** The rank 2 's 31 interate begin ***** !
+ *** The rank 1 's 31 interate calucate successful! ***** !
+ *** The rank 2 's 31 interate calucate successful! ***** !
+ *** The rank 0 's 31 interate calucate successful! ***** !
+ *** The rank 2 's 31 interate successful ***** !
+ *** The rank 2 's 32 interate begin ***** !
+ *** The rank 0 's 31 interate successful ***** !
+ *** The rank 0 's 32 interate begin ***** !
+ *** The rank 1 's 31 interate successful ***** !
+ *** The rank 1 's 32 interate begin ***** !
+ *** The rank 1 's 32 interate calucate successful! ***** !
+ *** The rank 2 's 32 interate calucate successful! ***** !
+ *** The rank 0 's 32 interate calucate successful! ***** !
+ *** The rank 2 's 32 interate successful ***** !
+ *** The rank 2 's 33 interate begin ***** !
+ *** The rank 0 's 32 interate successful ***** !
+ *** The rank 0 's 33 interate begin ***** !
+ *** The rank 1 's 32 interate successful ***** !
+ *** The rank 1 's 33 interate begin ***** !
+ *** The rank 1 's 33 interate calucate successful! ***** !
+ *** The rank 2 's 33 interate calucate successful! ***** !
+ *** The rank 0 's 33 interate calucate successful! ***** !
+ *** The rank 2 's 33 interate successful ***** !
+ *** The rank 2 's 34 interate begin ***** !
+ *** The rank 0 's 33 interate successful ***** !
+ *** The rank 0 's 34 interate begin ***** !
+ *** The rank 1 's 33 interate successful ***** !
+ *** The rank 1 's 34 interate begin ***** !
+ *** The rank 1 's 34 interate calucate successful! ***** !
+ *** The rank 2 's 34 interate calucate successful! ***** !
+ *** The rank 0 's 34 interate calucate successful! ***** !
+ *** The rank 2 's 34 interate successful ***** !
+ *** The rank 2 's 35 interate begin ***** !
+ *** The rank 0 's 34 interate successful ***** !
+ *** The rank 0 's 35 interate begin ***** !
+ *** The rank 1 's 34 interate successful ***** !
+ *** The rank 1 's 35 interate begin ***** !
+ *** The rank 1 's 35 interate calucate successful! ***** !
+ *** The rank 2 's 35 interate calucate successful! ***** !
+ *** The rank 0 's 35 interate calucate successful! ***** !
+ *** The rank 0 's 35 interate successful ***** !
+ *** The rank 0 's 36 interate begin ***** !
+ *** The rank 1 's 35 interate successful ***** !
+ *** The rank 1 's 36 interate begin ***** !
+ *** The rank 2 's 35 interate successful ***** !
+ *** The rank 2 's 36 interate begin ***** !
+ *** The rank 1 's 36 interate calucate successful! ***** !
+ *** The rank 2 's 36 interate calucate successful! ***** !
+ *** The rank 0 's 36 interate calucate successful! ***** !
+ *** The rank 2 's 36 interate successful ***** !
+ *** The rank 2 's 37 interate begin ***** !
+ *** The rank 0 's 36 interate successful ***** !
+ *** The rank 0 's 37 interate begin ***** !
+ *** The rank 1 's 36 interate successful ***** !
+ *** The rank 1 's 37 interate begin ***** !
+ *** The rank 0 's 37 interate calucate successful! ***** !
+ *** The rank 1 's 37 interate calucate successful! ***** !
+ *** The rank 2 's 37 interate calucate successful! ***** !
+ *** The rank 0 's 37 interate successful ***** !
+ *** The rank 0 's 38 interate begin ***** !
+ *** The rank 1 's 37 interate successful ***** !
+ *** The rank 1 's 38 interate begin ***** !
+ *** The rank 2 's 37 interate successful ***** !
+ *** The rank 2 's 38 interate begin ***** !
+ *** The rank 0 's 38 interate calucate successful! ***** !
+ *** The rank 1 's 38 interate calucate successful! ***** !
+ *** The rank 2 's 38 interate calucate successful! ***** !
+ *** The rank 0 's 38 interate successful ***** !
+ *** The rank 0 's 39 interate begin ***** !
+ *** The rank 1 's 38 interate successful ***** !
+ *** The rank 1 's 39 interate begin ***** !
+ *** The rank 2 's 38 interate successful ***** !
+ *** The rank 2 's 39 interate begin ***** !
+ *** The rank 0 's 39 interate calucate successful! ***** !
+ *** The rank 1 's 39 interate calucate successful! ***** !
+ *** The rank 2 's 39 interate calucate successful! ***** !
+ *** The rank 0 's 39 interate successful ***** !
+ *** The rank 0 's 40 interate begin ***** !
+ *** The rank 1 's 39 interate successful ***** !
+ *** The rank 1 's 40 interate begin ***** !
+ *** The rank 2 's 39 interate successful ***** !
+ *** The rank 2 's 40 interate begin ***** !
+ *** The rank 0 's 40 interate calucate successful! ***** !
+ *** The rank 1 's 40 interate calucate successful! ***** !
+ *** The rank 2 's 40 interate calucate successful! ***** !
+ *** The rank 0 's 40 interate successful ***** !
+ *** The rank 0 's 41 interate begin ***** !
+ *** The rank 1 's 40 interate successful ***** !
+ *** The rank 1 's 41 interate begin ***** !
+ *** The rank 2 's 40 interate successful ***** !
+ *** The rank 2 's 41 interate begin ***** !
+ *** The rank 0 's 41 interate calucate successful! ***** !
+ *** The rank 1 's 41 interate calucate successful! ***** !
+ *** The rank 2 's 41 interate calucate successful! ***** !
+ *** The rank 0 's 41 interate successful ***** !
+ *** The rank 0 's 42 interate begin ***** !
+ *** The rank 1 's 41 interate successful ***** !
+ *** The rank 1 's 42 interate begin ***** !
+ *** The rank 2 's 41 interate successful ***** !
+ *** The rank 2 's 42 interate begin ***** !
+ *** The rank 0 's 42 interate calucate successful! ***** !
+ *** The rank 1 's 42 interate calucate successful! ***** !
+ *** The rank 2 's 42 interate calucate successful! ***** !
+ *** The rank 0 's 42 interate successful ***** !
+ *** The rank 0 's 43 interate begin ***** !
+ *** The rank 1 's 42 interate successful ***** !
+ *** The rank 1 's 43 interate begin ***** !
+ *** The rank 2 's 42 interate successful ***** !
+ *** The rank 2 's 43 interate begin ***** !
+ *** The rank 0 's 43 interate calucate successful! ***** !
+ *** The rank 1 's 43 interate calucate successful! ***** !
+ *** The rank 2 's 43 interate calucate successful! ***** !
+ *** The rank 0 's 43 interate successful ***** !
+ *** The rank 0 's 44 interate begin ***** !
+ *** The rank 1 's 43 interate successful ***** !
+ *** The rank 1 's 44 interate begin ***** !
+ *** The rank 2 's 43 interate successful ***** !
+ *** The rank 2 's 44 interate begin ***** !
+ *** The rank 0 's 44 interate calucate successful! ***** !
+ *** The rank 1 's 44 interate calucate successful! ***** !
+ *** The rank 2 's 44 interate calucate successful! ***** !
+ *** The rank 0 's 44 interate successful ***** !
+ *** The rank 0 's 45 interate begin ***** !
+ *** The rank 1 's 44 interate successful ***** !
+ *** The rank 1 's 45 interate begin ***** !
+ *** The rank 2 's 44 interate successful ***** !
+ *** The rank 2 's 45 interate begin ***** !
+ *** The rank 0 's 45 interate calucate successful! ***** !
+ *** The rank 1 's 45 interate calucate successful! ***** !
+ *** The rank 2 's 45 interate calucate successful! ***** !
+ *** The rank 0 's 45 interate successful ***** !
+ *** The rank 0 's 46 interate begin ***** !
+ *** The rank 1 's 45 interate successful ***** !
+ *** The rank 1 's 46 interate begin ***** !
+ *** The rank 2 's 45 interate successful ***** !
+ *** The rank 2 's 46 interate begin ***** !
+ *** The rank 0 's 46 interate calucate successful! ***** !
+ *** The rank 1 's 46 interate calucate successful! ***** !
+ *** The rank 2 's 46 interate calucate successful! ***** !
+ *** The rank 0 's 46 interate successful ***** !
+ *** The rank 0 's 47 interate begin ***** !
+ *** The rank 1 's 46 interate successful ***** !
+ *** The rank 1 's 47 interate begin ***** !
+ *** The rank 2 's 46 interate successful ***** !
+ *** The rank 2 's 47 interate begin ***** !
+ *** The rank 0 's 47 interate calucate successful! ***** !
+ *** The rank 1 's 47 interate calucate successful! ***** !
+ *** The rank 2 's 47 interate calucate successful! ***** !
+ *** The rank 0 's 47 interate successful ***** !
+ *** The rank 0 's 48 interate begin ***** !
+ *** The rank 1 's 47 interate successful ***** !
+ *** The rank 1 's 48 interate begin ***** !
+ *** The rank 2 's 47 interate successful ***** !
+ *** The rank 2 's 48 interate begin ***** !
+ *** The rank 0 's 48 interate calucate successful! ***** !
+ *** The rank 1 's 48 interate calucate successful! ***** !
+ *** The rank 2 's 48 interate calucate successful! ***** !
+ *** The rank 0 's 48 interate successful ***** !
+ *** The rank 0 's 49 interate begin ***** !
+ *** The rank 1 's 48 interate successful ***** !
+ *** The rank 1 's 49 interate begin ***** !
+ *** The rank 2 's 48 interate successful ***** !
+ *** The rank 2 's 49 interate begin ***** !
+ *** The rank 0 's 49 interate calucate successful! ***** !
+ *** The rank 1 's 49 interate calucate successful! ***** !
+ *** The rank 2 's 49 interate calucate successful! ***** !
+ *** The rank 0 's 49 interate successful ***** !
+ *** The rank 0 's 50 interate begin ***** !
+ *** The rank 1 's 49 interate successful ***** !
+ *** The rank 1 's 50 interate begin ***** !
+ *** The rank 2 's 49 interate successful ***** !
+ *** The rank 2 's 50 interate begin ***** !
+ *** The rank 0 's 50 interate calucate successful! ***** !
+ *** The rank 1 's 50 interate calucate successful! ***** !
+ *** The rank 2 's 50 interate calucate successful! ***** !
+ *** The rank 0 's 50 interate successful ***** !
+ *** The rank 0 's 51 interate begin ***** !
+ *** The rank 1 's 50 interate successful ***** !
+ *** The rank 1 's 51 interate begin ***** !
+ *** The rank 2 's 50 interate successful ***** !
+ *** The rank 2 's 51 interate begin ***** !
+ *** The rank 0 's 51 interate calucate successful! ***** !
+ *** The rank 1 's 51 interate calucate successful! ***** !
+ *** The rank 2 's 51 interate calucate successful! ***** !
+ *** The rank 0 's 51 interate successful ***** !
+ *** The rank 0 's 52 interate begin ***** !
+ *** The rank 1 's 51 interate successful ***** !
+ *** The rank 1 's 52 interate begin ***** !
+ *** The rank 2 's 51 interate successful ***** !
+ *** The rank 2 's 52 interate begin ***** !
+ *** The rank 0 's 52 interate calucate successful! ***** !
+ *** The rank 1 's 52 interate calucate successful! ***** !
+ *** The rank 2 's 52 interate calucate successful! ***** !
+ *** The rank 0 's 52 interate successful ***** !
+ *** The rank 0 's 53 interate begin ***** !
+ *** The rank 1 's 52 interate successful ***** !
+ *** The rank 1 's 53 interate begin ***** !
+ *** The rank 2 's 52 interate successful ***** !
+ *** The rank 2 's 53 interate begin ***** !
+ *** The rank 0 's 53 interate calucate successful! ***** !
+ *** The rank 1 's 53 interate calucate successful! ***** !
+ *** The rank 2 's 53 interate calucate successful! ***** !
+ *** The rank 0 's 53 interate successful ***** !
+ *** The rank 0 's 54 interate begin ***** !
+ *** The rank 1 's 53 interate successful ***** !
+ *** The rank 1 's 54 interate begin ***** !
+ *** The rank 2 's 53 interate successful ***** !
+ *** The rank 2 's 54 interate begin ***** !
+ *** The rank 0 's 54 interate calucate successful! ***** !
+ *** The rank 1 's 54 interate calucate successful! ***** !
+ *** The rank 2 's 54 interate calucate successful! ***** !
+ *** The rank 0 's 54 interate successful ***** !
+ *** The rank 0 's 55 interate begin ***** !
+ *** The rank 1 's 54 interate successful ***** !
+ *** The rank 1 's 55 interate begin ***** !
+ *** The rank 2 's 54 interate successful ***** !
+ *** The rank 2 's 55 interate begin ***** !
+ *** The rank 0 's 55 interate calucate successful! ***** !
+ *** The rank 1 's 55 interate calucate successful! ***** !
+ *** The rank 2 's 55 interate calucate successful! ***** !
+ *** The rank 0 's 55 interate successful ***** !
+ *** The rank 0 's 56 interate begin ***** !
+ *** The rank 1 's 55 interate successful ***** !
+ *** The rank 1 's 56 interate begin ***** !
+ *** The rank 2 's 55 interate successful ***** !
+ *** The rank 2 's 56 interate begin ***** !
+ *** The rank 0 's 56 interate calucate successful! ***** !
+ *** The rank 1 's 56 interate calucate successful! ***** !
+ *** The rank 2 's 56 interate calucate successful! ***** !
+ *** The rank 0 's 56 interate successful ***** !
+ *** The rank 0 's 57 interate begin ***** !
+ *** The rank 1 's 56 interate successful ***** !
+ *** The rank 1 's 57 interate begin ***** !
+ *** The rank 2 's 56 interate successful ***** !
+ *** The rank 2 's 57 interate begin ***** !
+ *** The rank 0 's 57 interate calucate successful! ***** !
+ *** The rank 1 's 57 interate calucate successful! ***** !
+ *** The rank 2 's 57 interate calucate successful! ***** !
+ *** The rank 0 's 57 interate successful ***** !
+ *** The rank 0 's 58 interate begin ***** !
+ *** The rank 1 's 57 interate successful ***** !
+ *** The rank 1 's 58 interate begin ***** !
+ *** The rank 2 's 57 interate successful ***** !
+ *** The rank 2 's 58 interate begin ***** !
+ *** The rank 0 's 58 interate calucate successful! ***** !
+ *** The rank 1 's 58 interate calucate successful! ***** !
+ *** The rank 2 's 58 interate calucate successful! ***** !
+ *** The rank 0 's 58 interate successful ***** !
+ *** The rank 0 's 59 interate begin ***** !
+ *** The rank 1 's 58 interate successful ***** !
+ *** The rank 1 's 59 interate begin ***** !
+ *** The rank 2 's 58 interate successful ***** !
+ *** The rank 2 's 59 interate begin ***** !
+ *** The rank 0 's 59 interate calucate successful! ***** !
+ *** The rank 1 's 59 interate calucate successful! ***** !
+ *** The rank 2 's 59 interate calucate successful! ***** !
+ *** The rank 0 's 59 interate successful ***** !
+ *** The rank 0 's 60 interate begin ***** !
+ *** The rank 1 's 59 interate successful ***** !
+ *** The rank 1 's 60 interate begin ***** !
+ *** The rank 2 's 59 interate successful ***** !
+ *** The rank 2 's 60 interate begin ***** !
+ *** The rank 0 's 60 interate calucate successful! ***** !
+ *** The rank 1 's 60 interate calucate successful! ***** !
+ *** The rank 2 's 60 interate calucate successful! ***** !
+ *** The rank 0 's 60 interate successful ***** !
+ *** The rank 0 's 61 interate begin ***** !
+ *** The rank 1 's 60 interate successful ***** !
+ *** The rank 1 's 61 interate begin ***** !
+ *** The rank 2 's 60 interate successful ***** !
+ *** The rank 2 's 61 interate begin ***** !
+ *** The rank 0 's 61 interate calucate successful! ***** !
+ *** The rank 1 's 61 interate calucate successful! ***** !
+ *** The rank 2 's 61 interate calucate successful! ***** !
+ *** The rank 0 's 61 interate successful ***** !
+ *** The rank 0 's 62 interate begin ***** !
+ *** The rank 1 's 61 interate successful ***** !
+ *** The rank 1 's 62 interate begin ***** !
+ *** The rank 2 's 61 interate successful ***** !
+ *** The rank 2 's 62 interate begin ***** !
+ *** The rank 0 's 62 interate calucate successful! ***** !
+ *** The rank 1 's 62 interate calucate successful! ***** !
+ *** The rank 2 's 62 interate calucate successful! ***** !
+ *** The rank 0 's 62 interate successful ***** !
+ *** The rank 0 's 63 interate begin ***** !
+ *** The rank 1 's 62 interate successful ***** !
+ *** The rank 1 's 63 interate begin ***** !
+ *** The rank 2 's 62 interate successful ***** !
+ *** The rank 2 's 63 interate begin ***** !
+ *** The rank 0 's 63 interate calucate successful! ***** !
+ *** The rank 1 's 63 interate calucate successful! ***** !
+ *** The rank 2 's 63 interate calucate successful! ***** !
+ *** The rank 0 's 63 interate successful ***** !
+ *** The rank 0 's 64 interate begin ***** !
+ *** The rank 1 's 63 interate successful ***** !
+ *** The rank 1 's 64 interate begin ***** !
+ *** The rank 2 's 63 interate successful ***** !
+ *** The rank 2 's 64 interate begin ***** !
+ *** The rank 0 's 64 interate calucate successful! ***** !
+ *** The rank 1 's 64 interate calucate successful! ***** !
+ *** The rank 2 's 64 interate calucate successful! ***** !
+ *** The rank 0 's 64 interate successful ***** !
+ *** The rank 0 's 65 interate begin ***** !
+ *** The rank 1 's 64 interate successful ***** !
+ *** The rank 1 's 65 interate begin ***** !
+ *** The rank 2 's 64 interate successful ***** !
+ *** The rank 2 's 65 interate begin ***** !
+ *** The rank 0 's 65 interate calucate successful! ***** !
+ *** The rank 1 's 65 interate calucate successful! ***** !
+ *** The rank 2 's 65 interate calucate successful! ***** !
+ *** The rank 0 's 65 interate successful ***** !
+ *** The rank 0 's 66 interate begin ***** !
+ *** The rank 1 's 65 interate successful ***** !
+ *** The rank 1 's 66 interate begin ***** !
+ *** The rank 2 's 65 interate successful ***** !
+ *** The rank 2 's 66 interate begin ***** !
+ *** The rank 0 's 66 interate calucate successful! ***** !
+ *** The rank 1 's 66 interate calucate successful! ***** !
+ *** The rank 2 's 66 interate calucate successful! ***** !
+ *** The rank 0 's 66 interate successful ***** !
+ *** The rank 0 's 67 interate begin ***** !
+ *** The rank 1 's 66 interate successful ***** !
+ *** The rank 1 's 67 interate begin ***** !
+ *** The rank 2 's 66 interate successful ***** !
+ *** The rank 2 's 67 interate begin ***** !
+ *** The rank 0 's 67 interate calucate successful! ***** !
+ *** The rank 1 's 67 interate calucate successful! ***** !
+ *** The rank 2 's 67 interate calucate successful! ***** !
+ *** The rank 0 's 67 interate successful ***** !
+ *** The rank 0 's 68 interate begin ***** !
+ *** The rank 1 's 67 interate successful ***** !
+ *** The rank 1 's 68 interate begin ***** !
+ *** The rank 2 's 67 interate successful ***** !
+ *** The rank 2 's 68 interate begin ***** !
+ *** The rank 0 's 68 interate calucate successful! ***** !
+ *** The rank 1 's 68 interate calucate successful! ***** !
+ *** The rank 2 's 68 interate calucate successful! ***** !
+ *** The rank 0 's 68 interate successful ***** !
+ *** The rank 0 's 69 interate begin ***** !
+ *** The rank 1 's 68 interate successful ***** !
+ *** The rank 1 's 69 interate begin ***** !
+ *** The rank 2 's 68 interate successful ***** !
+ *** The rank 2 's 69 interate begin ***** !
+ *** The rank 0 's 69 interate calucate successful! ***** !
+ *** The rank 1 's 69 interate calucate successful! ***** !
+ *** The rank 2 's 69 interate calucate successful! ***** !
+ *** The rank 0 's 69 interate successful ***** !
+ *** The rank 0 's 70 interate begin ***** !
+ *** The rank 1 's 69 interate successful ***** !
+ *** The rank 1 's 70 interate begin ***** !
+ *** The rank 2 's 69 interate successful ***** !
+ *** The rank 2 's 70 interate begin ***** !
+ *** The rank 0 's 70 interate calucate successful! ***** !
+ *** The rank 1 's 70 interate calucate successful! ***** !
+ *** The rank 2 's 70 interate calucate successful! ***** !
+ *** The rank 0 's 70 interate successful ***** !
+ *** The rank 0 's 71 interate begin ***** !
+ *** The rank 1 's 70 interate successful ***** !
+ *** The rank 1 's 71 interate begin ***** !
+ *** The rank 2 's 70 interate successful ***** !
+ *** The rank 2 's 71 interate begin ***** !
+ *** The rank 0 's 71 interate calucate successful! ***** !
+ *** The rank 1 's 71 interate calucate successful! ***** !
+ *** The rank 2 's 71 interate calucate successful! ***** !
+ *** The rank 0 's 71 interate successful ***** !
+ *** The rank 0 's 72 interate begin ***** !
+ *** The rank 1 's 71 interate successful ***** !
+ *** The rank 1 's 72 interate begin ***** !
+ *** The rank 2 's 71 interate successful ***** !
+ *** The rank 2 's 72 interate begin ***** !
+ *** The rank 0 's 72 interate calucate successful! ***** !
+ *** The rank 1 's 72 interate calucate successful! ***** !
+ *** The rank 2 's 72 interate calucate successful! ***** !
+ *** The rank 0 's 72 interate successful ***** !
+ *** The rank 0 's 73 interate begin ***** !
+ *** The rank 1 's 72 interate successful ***** !
+ *** The rank 1 's 73 interate begin ***** !
+ *** The rank 2 's 72 interate successful ***** !
+ *** The rank 2 's 73 interate begin ***** !
+ *** The rank 0 's 73 interate calucate successful! ***** !
+ *** The rank 1 's 73 interate calucate successful! ***** !
+ *** The rank 2 's 73 interate calucate successful! ***** !
+ *** The rank 0 's 73 interate successful ***** !
+ *** The rank 0 's 74 interate begin ***** !
+ *** The rank 1 's 73 interate successful ***** !
+ *** The rank 1 's 74 interate begin ***** !
+ *** The rank 2 's 73 interate successful ***** !
+ *** The rank 2 's 74 interate begin ***** !
+ *** The rank 0 's 74 interate calucate successful! ***** !
+ *** The rank 1 's 74 interate calucate successful! ***** !
+ *** The rank 2 's 74 interate calucate successful! ***** !
+ *** The rank 0 's 74 interate successful ***** !
+ *** The rank 0 's 75 interate begin ***** !
+ *** The rank 1 's 74 interate successful ***** !
+ *** The rank 1 's 75 interate begin ***** !
+ *** The rank 2 's 74 interate successful ***** !
+ *** The rank 2 's 75 interate begin ***** !
+ *** The rank 0 's 75 interate calucate successful! ***** !
+ *** The rank 1 's 75 interate calucate successful! ***** !
+ *** The rank 2 's 75 interate calucate successful! ***** !
+ *** The rank 0 's 75 interate successful ***** !
+ *** The rank 0 's 76 interate begin ***** !
+ *** The rank 1 's 75 interate successful ***** !
+ *** The rank 1 's 76 interate begin ***** !
+ *** The rank 2 's 75 interate successful ***** !
+ *** The rank 2 's 76 interate begin ***** !
+ *** The rank 0 's 76 interate calucate successful! ***** !
+ *** The rank 1 's 76 interate calucate successful! ***** !
+ *** The rank 2 's 76 interate calucate successful! ***** !
+ *** The rank 0 's 76 interate successful ***** !
+ *** The rank 0 's 77 interate begin ***** !
+ *** The rank 1 's 76 interate successful ***** !
+ *** The rank 1 's 77 interate begin ***** !
+ *** The rank 2 's 76 interate successful ***** !
+ *** The rank 2 's 77 interate begin ***** !
+ *** The rank 0 's 77 interate calucate successful! ***** !
+ *** The rank 1 's 77 interate calucate successful! ***** !
+ *** The rank 2 's 77 interate calucate successful! ***** !
+ *** The rank 0 's 77 interate successful ***** !
+ *** The rank 0 's 78 interate begin ***** !
+ *** The rank 1 's 77 interate successful ***** !
+ *** The rank 1 's 78 interate begin ***** !
+ *** The rank 2 's 77 interate successful ***** !
+ *** The rank 2 's 78 interate begin ***** !
+ *** The rank 0 's 78 interate calucate successful! ***** !
+ *** The rank 1 's 78 interate calucate successful! ***** !
+ *** The rank 2 's 78 interate calucate successful! ***** !
+ *** The rank 0 's 78 interate successful ***** !
+ *** The rank 0 's 79 interate begin ***** !
+ *** The rank 1 's 78 interate successful ***** !
+ *** The rank 1 's 79 interate begin ***** !
+ *** The rank 2 's 78 interate successful ***** !
+ *** The rank 2 's 79 interate begin ***** !
+ *** The rank 0 's 79 interate calucate successful! ***** !
+ *** The rank 1 's 79 interate calucate successful! ***** !
+ *** The rank 2 's 79 interate calucate successful! ***** !
+ *** The rank 0 's 79 interate successful ***** !
+ *** The rank 0 's 80 interate begin ***** !
+ *** The rank 1 's 79 interate successful ***** !
+ *** The rank 1 's 80 interate begin ***** !
+ *** The rank 2 's 79 interate successful ***** !
+ *** The rank 2 's 80 interate begin ***** !
+ *** The rank 0 's 80 interate calucate successful! ***** !
+ *** The rank 1 's 80 interate calucate successful! ***** !
+ *** The rank 2 's 80 interate calucate successful! ***** !
+ *** The rank 0 's 80 interate successful ***** !
+ *** The rank 0 's 81 interate begin ***** !
+ *** The rank 1 's 80 interate successful ***** !
+ *** The rank 1 's 81 interate begin ***** !
+ *** The rank 2 's 80 interate successful ***** !
+ *** The rank 2 's 81 interate begin ***** !
+ *** The rank 0 's 81 interate calucate successful! ***** !
+ *** The rank 1 's 81 interate calucate successful! ***** !
+ *** The rank 2 's 81 interate calucate successful! ***** !
+ *** The rank 0 's 81 interate successful ***** !
+ *** The rank 0 's 82 interate begin ***** !
+ *** The rank 1 's 81 interate successful ***** !
+ *** The rank 1 's 82 interate begin ***** !
+ *** The rank 2 's 81 interate successful ***** !
+ *** The rank 2 's 82 interate begin ***** !
+ *** The rank 0 's 82 interate calucate successful! ***** !
+ *** The rank 1 's 82 interate calucate successful! ***** !
+ *** The rank 2 's 82 interate calucate successful! ***** !
+ *** The rank 0 's 82 interate successful ***** !
+ *** The rank 0 's 83 interate begin ***** !
+ *** The rank 1 's 82 interate successful ***** !
+ *** The rank 1 's 83 interate begin ***** !
+ *** The rank 2 's 82 interate successful ***** !
+ *** The rank 2 's 83 interate begin ***** !
+ *** The rank 0 's 83 interate calucate successful! ***** !
+ *** The rank 1 's 83 interate calucate successful! ***** !
+ *** The rank 2 's 83 interate calucate successful! ***** !
+ *** The rank 0 's 83 interate successful ***** !
+ *** The rank 0 's 84 interate begin ***** !
+ *** The rank 1 's 83 interate successful ***** !
+ *** The rank 1 's 84 interate begin ***** !
+ *** The rank 2 's 83 interate successful ***** !
+ *** The rank 2 's 84 interate begin ***** !
+ *** The rank 0 's 84 interate calucate successful! ***** !
+ *** The rank 1 's 84 interate calucate successful! ***** !
+ *** The rank 2 's 84 interate calucate successful! ***** !
+ *** The rank 0 's 84 interate successful ***** !
+ *** The rank 0 's 85 interate begin ***** !
+ *** The rank 1 's 84 interate successful ***** !
+ *** The rank 1 's 85 interate begin ***** !
+ *** The rank 2 's 84 interate successful ***** !
+ *** The rank 2 's 85 interate begin ***** !
+ *** The rank 0 's 85 interate calucate successful! ***** !
+ *** The rank 1 's 85 interate calucate successful! ***** !
+ *** The rank 2 's 85 interate calucate successful! ***** !
+ *** The rank 0 's 85 interate successful ***** !
+ *** The rank 0 's 86 interate begin ***** !
+ *** The rank 1 's 85 interate successful ***** !
+ *** The rank 1 's 86 interate begin ***** !
+ *** The rank 2 's 85 interate successful ***** !
+ *** The rank 2 's 86 interate begin ***** !
+ *** The rank 0 's 86 interate calucate successful! ***** !
+ *** The rank 1 's 86 interate calucate successful! ***** !
+ *** The rank 2 's 86 interate calucate successful! ***** !
+ *** The rank 0 's 86 interate successful ***** !
+ *** The rank 0 's 87 interate begin ***** !
+ *** The rank 1 's 86 interate successful ***** !
+ *** The rank 1 's 87 interate begin ***** !
+ *** The rank 2 's 86 interate successful ***** !
+ *** The rank 2 's 87 interate begin ***** !
+ *** The rank 0 's 87 interate calucate successful! ***** !
+ *** The rank 1 's 87 interate calucate successful! ***** !
+ *** The rank 2 's 87 interate calucate successful! ***** !
+ *** The rank 0 's 87 interate successful ***** !
+ *** The rank 0 's 88 interate begin ***** !
+ *** The rank 1 's 87 interate successful ***** !
+ *** The rank 1 's 88 interate begin ***** !
+ *** The rank 2 's 87 interate successful ***** !
+ *** The rank 2 's 88 interate begin ***** !
+ *** The rank 0 's 88 interate calucate successful! ***** !
+ *** The rank 1 's 88 interate calucate successful! ***** !
+ *** The rank 2 's 88 interate calucate successful! ***** !
+ *** The rank 0 's 88 interate successful ***** !
+ *** The rank 0 's 89 interate begin ***** !
+ *** The rank 1 's 88 interate successful ***** !
+ *** The rank 1 's 89 interate begin ***** !
+ *** The rank 2 's 88 interate successful ***** !
+ *** The rank 2 's 89 interate begin ***** !
+ *** The rank 0 's 89 interate calucate successful! ***** !
+ *** The rank 1 's 89 interate calucate successful! ***** !
+ *** The rank 2 's 89 interate calucate successful! ***** !
+ *** The rank 0 's 89 interate successful ***** !
+ *** The rank 0 's 90 interate begin ***** !
+ *** The rank 1 's 89 interate successful ***** !
+ *** The rank 1 's 90 interate begin ***** !
+ *** The rank 2 's 89 interate successful ***** !
+ *** The rank 2 's 90 interate begin ***** !
+ *** The rank 0 's 90 interate calucate successful! ***** !
+ *** The rank 1 's 90 interate calucate successful! ***** !
+ *** The rank 2 's 90 interate calucate successful! ***** !
+ *** The rank 0 's 90 interate successful ***** !
+ *** The rank 0 's 91 interate begin ***** !
+ *** The rank 1 's 90 interate successful ***** !
+ *** The rank 1 's 91 interate begin ***** !
+ *** The rank 2 's 90 interate successful ***** !
+ *** The rank 2 's 91 interate begin ***** !
+ *** The rank 0 's 91 interate calucate successful! ***** !
+ *** The rank 1 's 91 interate calucate successful! ***** !
+ *** The rank 2 's 91 interate calucate successful! ***** !
+ *** The rank 0 's 91 interate successful ***** !
+ *** The rank 0 's 92 interate begin ***** !
+ *** The rank 1 's 91 interate successful ***** !
+ *** The rank 1 's 92 interate begin ***** !
+ *** The rank 2 's 91 interate successful ***** !
+ *** The rank 2 's 92 interate begin ***** !
+ *** The rank 0 's 92 interate calucate successful! ***** !
+ *** The rank 1 's 92 interate calucate successful! ***** !
+ *** The rank 2 's 92 interate calucate successful! ***** !
+ *** The rank 0 's 92 interate successful ***** !
+ *** The rank 0 's 93 interate begin ***** !
+ *** The rank 1 's 92 interate successful ***** !
+ *** The rank 1 's 93 interate begin ***** !
+ *** The rank 2 's 92 interate successful ***** !
+ *** The rank 2 's 93 interate begin ***** !
+ *** The rank 0 's 93 interate calucate successful! ***** !
+ *** The rank 1 's 93 interate calucate successful! ***** !
+ *** The rank 2 's 93 interate calucate successful! ***** !
+ *** The rank 0 's 93 interate successful ***** !
+ *** The rank 0 's 94 interate begin ***** !
+ *** The rank 1 's 93 interate successful ***** !
+ *** The rank 1 's 94 interate begin ***** !
+ *** The rank 2 's 93 interate successful ***** !
+ *** The rank 2 's 94 interate begin ***** !
+ *** The rank 0 's 94 interate calucate successful! ***** !
+ *** The rank 1 's 94 interate calucate successful! ***** !
+ *** The rank 2 's 94 interate calucate successful! ***** !
+ *** The rank 0 's 94 interate successful ***** !
+ *** The rank 0 's 95 interate begin ***** !
+ *** The rank 1 's 94 interate successful ***** !
+ *** The rank 1 's 95 interate begin ***** !
+ *** The rank 2 's 94 interate successful ***** !
+ *** The rank 2 's 95 interate begin ***** !
+ *** The rank 0 's 95 interate calucate successful! ***** !
+ *** The rank 1 's 95 interate calucate successful! ***** !
+ *** The rank 2 's 95 interate calucate successful! ***** !
+ *** The rank 0 's 95 interate successful ***** !
+ *** The rank 0 's 96 interate begin ***** !
+ *** The rank 1 's 95 interate successful ***** !
+ *** The rank 1 's 96 interate begin ***** !
+ *** The rank 2 's 95 interate successful ***** !
+ *** The rank 2 's 96 interate begin ***** !
+ *** The rank 0 's 96 interate calucate successful! ***** !
+ *** The rank 1 's 96 interate calucate successful! ***** !
+ *** The rank 2 's 96 interate calucate successful! ***** !
+ *** The rank 0 's 96 interate successful ***** !
+ *** The rank 0 's 97 interate begin ***** !
+ *** The rank 1 's 96 interate successful ***** !
+ *** The rank 1 's 97 interate begin ***** !
+ *** The rank 2 's 96 interate successful ***** !
+ *** The rank 2 's 97 interate begin ***** !
+ *** The rank 0 's 97 interate calucate successful! ***** !
+ *** The rank 1 's 97 interate calucate successful! ***** !
+ *** The rank 2 's 97 interate calucate successful! ***** !
+ *** The rank 0 's 97 interate successful ***** !
+ *** The rank 0 's 98 interate begin ***** !
+ *** The rank 1 's 97 interate successful ***** !
+ *** The rank 1 's 98 interate begin ***** !
+ *** The rank 2 's 97 interate successful ***** !
+ *** The rank 2 's 98 interate begin ***** !
+ *** The rank 0 's 98 interate calucate successful! ***** !
+ *** The rank 1 's 98 interate calucate successful! ***** !
+ *** The rank 2 's 98 interate calucate successful! ***** !
+ *** The rank 0 's 98 interate successful ***** !
+ *** The rank 0 's 99 interate begin ***** !
+ *** The rank 1 's 98 interate successful ***** !
+ *** The rank 1 's 99 interate begin ***** !
+ *** The rank 2 's 98 interate successful ***** !
+ *** The rank 2 's 99 interate begin ***** !
+ *** The rank 0 's 99 interate calucate successful! ***** !
+ *** The rank 1 's 99 interate calucate successful! ***** !
+ *** The rank 2 's 99 interate calucate successful! ***** !
+ *** The rank 0 's 99 interate successful ***** !
+ *** The rank 1 's 99 interate successful ***** !
+ *** The rank 2 's 99 interate successful ***** !
+------------------------------------
+ runtime: 0.153015 s
+------------------------------------
+With 3 processes
