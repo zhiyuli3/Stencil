@@ -16,8 +16,6 @@ double wtime(void);
 int main(int argc, char* argv[])
 { 
   /**********MPI Parameters****************************************/
- //int i,j;             /* row and column indices for the grid */
- // int kk;                /* index for looping over ranks */
   int rank;              /* the rank of this process */
   int left;              /* the rank of the process to the left */
   int right;             /* the rank of the process to the right */
@@ -40,6 +38,7 @@ int main(int argc, char* argv[])
   MPI_Init( &argc, &argv );
   MPI_Comm_size( MPI_COMM_WORLD, &size );
   MPI_Comm_rank( MPI_COMM_WORLD, &rank );
+  printf(" ***The total size is  %d !!! ***** !\n",rank);
   // Check usage
   if (argc != 4) {
     fprintf(stderr, "Usage: %s nx ny niters\n", argv[0]);
@@ -55,8 +54,6 @@ int main(int argc, char* argv[])
   // stencil
   int width = nx + 2;
   int height = ny + 2;
-
-  /****************************** MPI **********************************/
   /** determine process ranks to the left and right of rank
   ** respecting periodic boundary conditions*/
   left = (rank == MASTER) ? (rank + size - 1) : (rank - 1);
@@ -70,16 +67,14 @@ int main(int argc, char* argv[])
     fprintf(stderr,"Error: too many processes:- local_ncols < 1\n");
     MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
   }
-  /****************************** MPI **********************************/
 
 
+
+  
   // Allocate the image
   float* image = malloc(sizeof(float) * width * height);
   float* tmp_image = malloc(sizeof(float) * width * height);
   float* final_image = malloc(sizeof(float) * width * height);
-    // Set the input image
-  init_image(nx, ny, width, height, image, tmp_image);
-  /****************************** MPI **********************************/
   // Allocate the send and receive buffer
   sendbuf = malloc (sizeof (float) * local_nrows);
   recvbuf = malloc (sizeof (float) * local_nrows);
@@ -105,34 +100,37 @@ int main(int argc, char* argv[])
   local_ncole_cal = local_ncols + 2;
   printf(" The rank split %d successful!\n",rank);
   }
-  /****************************** MPI **********************************/
+
 
 
 
   
-  /****************************** MPI **********************************/
+  /****************************** initialize **********************************/
   printf(" ***The rank %d initialize begin *****/n !\n",rank);
+  // Set the input image
+  init_image(nx, ny, width, height, image, tmp_image);
+
   //initialize the local some boundary for grid
-  if (rank == 0)
+  if (rank == MASTER)
   {
   // the first block just add one new halo
-  for (int i = 0; i < local_ncols ; ++i) { // total number of the the cols is the cale(rank,size)
-    for (int j = 0; j < local_nrows; ++j){ //total number of the rows is height
-      local_image [j + i * height] = image [j + ((rank*(width/size)-1)+i)*height];
-      tmp_local_image [j + i * height] = image [j + ((rank*(width/size)-1)+i)*height];
-      
+    for (int i = 0; i < local_ncols ; ++i) { // total number of the the cols is the cale(rank,size)
+      for (int j = 0; j < local_nrows; ++j){ //total number of the rows is height
+        local_image [j + i * local_nrows] = image [j + ((rank*(width/size))+i)*local_nrows];
+        tmp_local_image [j + i * local_nrows] = image [j + ((rank*(width/size)-1)+i)*local_nrows];
+        
+      }
     }
-  }
    printf(" ***The rank %d initialize success ***** !\n",rank);
   }else if (rank == (size -1) )
   {
   // the last block just add one new halo
     // the first block just one halo
-  for (int i = 1; i < local_ncols + 1; ++i) { // total number of the the cols is the cale(rank,size)
-    for (int j = 0; j < local_nrows; ++j) { //total number of the rows is height
-      local_image [j + i * height] = image [j + ((rank*(width/size)-1)+i)*height];
-      tmp_local_image [j + i * height] = image [j + ((rank*(width/size)-1)+i)*height];
-    }
+    for (int i = 1; i < local_ncols + 1; ++i) { // total number of the the cols is the cale(rank,size)
+      for (int j = 0; j < local_nrows; ++j) {  //total number of the rows is height
+        local_image [j + i * height] = image [j + ((rank*(width/size)-1)+i)*height];
+        tmp_local_image [j + i * height] = image [j + ((rank*(width/size)-1)+i)*height];
+      }
     
   }
   printf(" ***The rank %d initialize success ***** !\n",rank);
@@ -148,10 +146,14 @@ int main(int argc, char* argv[])
   }
   printf(" ***The rank %d initialize success ***** !\n",rank);
   }
+  if (rank == 0){
+  for(int i = 0; i<1026;i++)
+       printf("The %d block has number: %f \n",i,local_image[i+324*1026]);
+  }
   /****************************** Asm the halo before the stencil **********************************/
    ///SEND and Receive
    //send left, receive right
-   printf(" The initial Halo");
+  printf(" The initial Halo begin");
   if (rank != 0)
   {
     printf(" ***The rank %d send left successful ***** !\n",rank);
@@ -187,11 +189,13 @@ int main(int argc, char* argv[])
     MPI_Recv(&local_image[0], height, MPI_FLOAT, left, 0, MPI_COMM_WORLD, &status);
     printf(" ***The rank %d receive left successful ***** !\n",rank); 
   }
+  printf(" The initial Halo successful \n!");
+
   /*********************************************************************
    * 
    * 
    */
-  /////////////////////////Iterate////////////////////////////////////////////
+  /////////////////////////Iterate begin////////////////////////////////////////////
   double tic = wtime();
   for (int t = 0; t < niters; ++t)
   { printf(" *** The rank %d 's %d interate begin ***** !\n",rank,t); 
@@ -233,20 +237,46 @@ int main(int argc, char* argv[])
 
 
     ///////////////////////stencil second///////////////////////////
-    if (rank == MASTER)
-    {
+    ////send left and receive right
       stencil(local_ncole_cal, height, tmp_local_image, local_image);
-    }
-    else if (rank == size - 1)
-    {
-      stencil(local_ncols, height, tmp_local_image, local_image);
-    }
-    else
-    {
-      stencil(local_ncols, height, tmp_local_image, local_image);
-    }
+        if (rank != 0)
+      {
+        printf(" ***The rank %d send left successful ***** !\n",rank);
+        MPI_Ssend(&local_image[1*height], height, MPI_FLOAT, left, 0, MPI_COMM_WORLD);
+      }
+      if (rank != size-1)
+      { 
+        if (rank == 0){
+          
+          MPI_Recv(&local_image[(local_ncols)*height], height, MPI_FLOAT, right, 0, MPI_COMM_WORLD, &status);
+          printf(" ***The rank %d receive right successful ***** !\n",rank);
+        }else{
+          
+          MPI_Recv(&local_image[(local_ncols+1)*height], height, MPI_FLOAT, right, 0, MPI_COMM_WORLD, &status);
+          printf(" ***The rank %d receive right successful ***** !\n",rank); 
+        }
+      }
+      //send right and receive left
+      if (rank != size-1)
+      {
+        if (rank == 0){
+        MPI_Ssend(&local_image[(local_ncols-1)*height], height, MPI_FLOAT, right, 0, MPI_COMM_WORLD);
+        printf(" ***The rank %d send right successful ***** !\n",rank); 
+        }else{
+        MPI_Ssend(&local_image[(local_ncols)*height], height, MPI_FLOAT, right, 0, MPI_COMM_WORLD);
+        printf(" ***The rank %d send right successful ***** !\n",rank); 
+        }
+      }
+      if (rank != 0)
+      {
+        MPI_Recv(&local_image[0], height, MPI_FLOAT, left, 0, MPI_COMM_WORLD, &status);
+        printf(" ***The rank %d receive left successful ***** !\n",rank); 
+      }
+
+
     /////////////////////exchange halos//////////////////////////
     //send left and receive right
+    /*
     if (rank != 0)
     {
       MPI_Send(&local_image[1*height], height, MPI_FLOAT, left, 0, MPI_COMM_WORLD);
@@ -264,7 +294,7 @@ int main(int argc, char* argv[])
     {
       MPI_Recv(&local_image[0], height, MPI_FLOAT, left, 0, MPI_COMM_WORLD, &status);
     }
-
+    */
     printf(" *** The rank %d 's %d interate successful ***** !\n",rank,t);
   }
   double toc = wtime();
@@ -276,16 +306,17 @@ int main(int argc, char* argv[])
     for(int j=0; j<local_ncols; ++j){
       for(int i=0;i<local_nrows; ++i) 
       {
-        final_image[i+(j-1)*height] = local_image [i+j*height];
+        final_image[i+j*height] = local_image [i+j*height];
       }
     }
 
     for (int r = 1; r<size; ++r)
     {
       int cols = calc_ncols_from_rank(r, size, height);
+      if (r != size - 1)
         for(int j=1; j<cols+1; ++j)
         {
-          MPI_Recv(&final_image[((r*(width/size)-1)+j)*height], height, MPI_FLOAT, r, 0, MPI_COMM_WORLD, &status);
+          MPI_Recv(&final_image[((r*(width/size))+j)*height], height, MPI_FLOAT, r, 0, MPI_COMM_WORLD, &status);
         }
 
       
@@ -301,7 +332,7 @@ int main(int argc, char* argv[])
       }
     }else
     {
-    for(int j=1; j<local_ncols+2; ++j)
+    for(int j=1; j<local_ncols+1; ++j)
       { //send back to the master processor
         MPI_Ssend(&local_image[j*height], height, MPI_FLOAT, 0, 0, MPI_COMM_WORLD);
     }
@@ -317,8 +348,8 @@ int main(int argc, char* argv[])
     printf("With %d processes\n", size);
 
     output_image(OUTPUT_FILE, nx, ny, width, height,final_image);
-    for(int i = 0; i<1026;i++)
-       printf("number: %f \n",final_image[i+0*1026]);
+    // for(int i = 0; i<1026;i++)
+    //    printf("number: %f \n",final_image[i+0*1026]);
     
   }
 
@@ -360,12 +391,17 @@ void stencil(const int nx, const int ny, float * restrict image, float * restric
   //rank0: 0 1 2 3 4
   //         1 2 3
   //rnak inter: 0 1 
-  float tp_col, tp_row;
-  for (int i = 1; i < nx -1; ++i) {
-    for (int j = 1; j < ny -1; ++j) {
-       tp_row = image[j     + i       * ny] * 3.0f/5.0f + image[j - 1 + i       * ny] * 0.5f/5.0f + image[j + 1 + i       * ny] * 0.5f/5.0f;
-       tp_col = image[j     + (i - 1) * ny] * 0.5f/5.0f + image[j     + (i + 1) * ny] * 0.5f/5.0f;
-       tmp_image[j + i * ny] = tp_row + tp_col;
+  //float tp_col, tp_row;
+  for (int i = 1; i < nx-1 ; ++i) {
+    for (int j = 1; j < ny-1 ; ++j) {
+       //tp_row = image[j     + i       * ny] * 3.0f/5.0f + image[j - 1 + i       * ny] * 0.5f/5.0f + image[j + 1 + i       * ny] * 0.5f/5.0f;
+       //tp_col = image[j     + (i - 1) * ny] * 0.5f/5.0f + image[j     + (i + 1) * ny] * 0.5f/5.0f;
+      tmp_image[j + i * ny] =  image[j     + i       * ny] * 3.0 / 5.0;
+      tmp_image[j + i * ny] += image[j     + (i - 1) * ny] * 0.5 / 5.0;
+      tmp_image[j + i * ny] += image[j     + (i + 1) * ny] * 0.5 / 5.0;
+      tmp_image[j + i * ny] += image[j - 1 + i       * ny] * 0.5 / 5.0;
+      tmp_image[j + i * ny] += image[j + 1 + i       * ny] * 0.5 / 5.0;
+    //  tmp_image[j + i * ny] = tp_row + tp_col;
     }
   }
 }
@@ -376,9 +412,9 @@ void stencil(const int nx, const int ny, float * restrict image, float * restric
   float tp_col, tp_row;
   for (int i = 1; i < ny + 1; ++i) {
     for (int j = 1; j < nx + 1; ++j) {
-       tp_row = image[j     + i       * height] * 3.0f / 5.0f + image[j - 1 + i       * height] * 0.5f / 5.0f + image[j + 1 + i       * height] * 0.5f / 5.0f;
-       tp_col = image[j     + (i - 1) * height] * 0.5f / 5.0f + image[j     + (i + 1) * height] * 0.5f / 5.0f;
-       tmp_image[j + i * height] = tp_row + tp_col;
+       tp_row = image[j     + i       * ny] * 3.0f / 5.0f + image[j - 1 + i       * ny] * 0.5f / 5.0f + image[j + 1 + i       * ny] * 0.5f / 5.0f;
+       tp_col = image[j     + (i - 1) * ny] * 0.5f / 5.0f + image[j     + (i + 1) * ny] * 0.5f / 5.0f;
+       tmp_image[j + i * ny] = tp_row + tp_col;
     }
   }
 }
