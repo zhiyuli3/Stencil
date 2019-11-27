@@ -12,7 +12,6 @@ void init_image(const int nx, const int ny, const int width, const int height,
 void output_image(const char* file_name, const int nx, const int ny,
                   const int width, const int height, float* image);
 double wtime(void);
-
 int main(int argc, char* argv[])
 { 
   /**********MPI Parameters****************************************/
@@ -25,11 +24,6 @@ int main(int argc, char* argv[])
   int local_nrows;       /* number of rows apportioned to this rank */
   int local_ncols;       /* number of columns apportioned to this rank */
   int local_ncole_cal;
- // int remote_ncols;      /* number of columns apportioned to a remote rank */
- // double *w;             /* local temperature grid at time t     */
-  double *sendbuf;       /* buffer to hold values to send */
-  double *recvbuf;       /* buffer to hold received values */
- // double *printbuf;      /* buffer to hold values for printing */
   float* local_image;    /* local image grid */
   float* tmp_local_image;  /*tmp local image grid*/
   /****************************************************************/
@@ -63,25 +57,20 @@ int main(int argc, char* argv[])
   ** each rank gets all the rows, but a subset of the number of columns*/
   local_nrows = height;
   local_ncols = calc_ncols_from_rank(rank, size, width);
+  printf(" The rank  %d 's block number: %d!\n",rank,local_ncols);
   if (local_ncols < 1) {
     fprintf(stderr,"Error: too many processes:- local_ncols < 1\n");
     MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
   }
 
-
-
-  
   // Allocate the image
   float* image = malloc(sizeof(float) * width * height);
   float* tmp_image = malloc(sizeof(float) * width * height);
   float* final_image = malloc(sizeof(float) * width * height);
-  // Allocate the send and receive buffer
-  sendbuf = malloc (sizeof (float) * local_nrows);
-  recvbuf = malloc (sizeof (float) * local_nrows);
 
   // Allocate the local image and local temp image
   /*Need to add 2 for halo exchanges*/
-  if (rank == 0)  //Add one for rank 0
+  if (rank == MASTER)  //Add only one for rank 0 and rank size-1
   {
   local_image = (float*) malloc (sizeof(float*) * local_nrows * (local_ncols + 1));
   tmp_local_image = (float*) malloc (sizeof(float*) * local_nrows * (local_ncols + 1));
@@ -117,7 +106,7 @@ int main(int argc, char* argv[])
     for (int i = 0; i < local_ncols ; ++i) { // total number of the the cols is the cale(rank,size)
       for (int j = 0; j < local_nrows; ++j){ //total number of the rows is height
         local_image [j + i * local_nrows] = image [j + ((rank*(width/size))+i)*local_nrows];
-        tmp_local_image [j + i * local_nrows] = image [j + ((rank*(width/size)-1)+i)*local_nrows];
+        tmp_local_image [j + i * local_nrows] = image [j + ((rank*(width/size))+i)*local_nrows];
         
       }
     }
@@ -146,10 +135,7 @@ int main(int argc, char* argv[])
   }
   printf(" ***The rank %d initialize success ***** !\n",rank);
   }
-  if (rank == 0){
-  for(int i = 0; i<1026;i++)
-       printf("The %d block has number: %f \n",i,local_image[i+324*1026]);
-  }
+
   /****************************** Asm the halo before the stencil **********************************/
    ///SEND and Receive
    //send left, receive right
@@ -161,7 +147,7 @@ int main(int argc, char* argv[])
   }
   if (rank != size-1)
   { 
-    if (rank == 0){
+    if (rank == MASTER){
        
        MPI_Recv(&local_image[(local_ncols)*height], height, MPI_FLOAT, right, 0, MPI_COMM_WORLD, &status);
        printf(" ***The rank %d receive right successful ***** !\n",rank);
@@ -191,6 +177,7 @@ int main(int argc, char* argv[])
   }
   printf(" The initial Halo successful \n!");
 
+
   /*********************************************************************
    * 
    * 
@@ -198,20 +185,23 @@ int main(int argc, char* argv[])
   /////////////////////////Iterate begin////////////////////////////////////////////
   double tic = wtime();
   for (int t = 0; t < niters; ++t)
-  { printf(" *** The rank %d 's %d interate begin ***** !\n",rank,t); 
+  { 
+    printf(" *** The rank %d 's %d interate begin ***** !\n",rank,t); 
+
     //////////////////////stencil first//////////////////
     stencil(local_ncole_cal, height, local_image, tmp_local_image);
+    printf(" *** The rank %d 's %d interate first calucate successful! ***** !\n",rank,t);
+    /////////////////////exchange halos//////////////////////
+    
 
-    printf(" *** The rank %d 's %d interate calucate successful! ***** !\n",rank,t);
-    ///////////////////exchange halos//////////////////////
     //send left and receive right
-    if (rank != 0)
+    if (rank != MASTER)
     {
       MPI_Send(&tmp_local_image[1*height], height, MPI_FLOAT, left, 0, MPI_COMM_WORLD);
     }
     if (rank != size-1)
     {
-     if (rank == 0){
+     if (rank == MASTER){
        MPI_Recv(&tmp_local_image[(local_ncols)*height], height, MPI_FLOAT, right, 0, MPI_COMM_WORLD, &status);
      }else{
        MPI_Recv(&tmp_local_image[(local_ncols+1)*height], height, MPI_FLOAT, right, 0, MPI_COMM_WORLD, &status);
@@ -237,16 +227,20 @@ int main(int argc, char* argv[])
 
 
     ///////////////////////stencil second///////////////////////////
-    ////send left and receive right
+    
       stencil(local_ncole_cal, height, tmp_local_image, local_image);
-        if (rank != 0)
+      printf(" *** The rank %d 's %d interate second calucate successful! ***** !\n",rank,t);
+
+
+      ////send left and receive right
+      if (rank != MASTER)
       {
         printf(" ***The rank %d send left successful ***** !\n",rank);
         MPI_Ssend(&local_image[1*height], height, MPI_FLOAT, left, 0, MPI_COMM_WORLD);
       }
       if (rank != size-1)
       { 
-        if (rank == 0){
+        if (rank == MASTER){
           
           MPI_Recv(&local_image[(local_ncols)*height], height, MPI_FLOAT, right, 0, MPI_COMM_WORLD, &status);
           printf(" ***The rank %d receive right successful ***** !\n",rank);
@@ -259,7 +253,7 @@ int main(int argc, char* argv[])
       //send right and receive left
       if (rank != size-1)
       {
-        if (rank == 0){
+        if (rank == MASTER){
         MPI_Ssend(&local_image[(local_ncols-1)*height], height, MPI_FLOAT, right, 0, MPI_COMM_WORLD);
         printf(" ***The rank %d send right successful ***** !\n",rank); 
         }else{
@@ -272,36 +266,19 @@ int main(int argc, char* argv[])
         MPI_Recv(&local_image[0], height, MPI_FLOAT, left, 0, MPI_COMM_WORLD, &status);
         printf(" ***The rank %d receive left successful ***** !\n",rank); 
       }
-
-
-    /////////////////////exchange halos//////////////////////////
-    //send left and receive right
-    /*
-    if (rank != 0)
-    {
-      MPI_Send(&local_image[1*height], height, MPI_FLOAT, left, 0, MPI_COMM_WORLD);
-    }
-    if (rank != size-1)
-    {
-      MPI_Recv(&local_image[(local_ncols+1)*height], height, MPI_FLOAT, right, 0, MPI_COMM_WORLD, &status);
-    }
-    //send right and receive left
-    if (rank != size-1)
-    {
-      MPI_Send(&local_image[(local_ncols)*height], height, MPI_FLOAT, right, 0, MPI_COMM_WORLD);
-    }
-    if (rank != 0)
-    {
-      MPI_Recv(&local_image[0], height, MPI_FLOAT, left, 0, MPI_COMM_WORLD, &status);
-    }
-    */
     printf(" *** The rank %d 's %d interate successful ***** !\n",rank,t);
+
+   // if (rank == 0){
+    //for(int i = 0; i<1026;i++)
+    //   printf("The %d block has number: %f \n",i,local_image[i+1*1026]);
+    // }
   }
   double toc = wtime();
   ///
   ///
   //Collect result
-    if (rank == 0) 
+
+    if (rank == MASTER) 
     { // need collect the left halo
     for(int j=0; j<local_ncols; ++j){
       for(int i=0;i<local_nrows; ++i) 
@@ -310,13 +287,13 @@ int main(int argc, char* argv[])
       }
     }
 
-    for (int r = 1; r<size; ++r)
+    for (int rank_number = 1; rank_number<size; ++rank_number)
     {
-      int cols = calc_ncols_from_rank(r, size, height);
-      if (r != size - 1)
+      int cols = calc_ncols_from_rank(rank_number, size, height);
+      if (rank_number != size - 1)
         for(int j=1; j<cols+1; ++j)
         {
-          MPI_Recv(&final_image[((r*(width/size))+j)*height], height, MPI_FLOAT, r, 0, MPI_COMM_WORLD, &status);
+          MPI_Recv(&final_image[((rank_number*(width/size)-1)+j)*height], height, MPI_FLOAT, rank_number, 0, MPI_COMM_WORLD, &status);
         }
 
       
@@ -324,20 +301,10 @@ int main(int argc, char* argv[])
   }
   else
   { 
-    if (rank != size -1)
-    {
-    for(int j=1; j<local_ncols+1; ++j)
+    for(int i=1; i<local_ncols+1; ++i)
       { //send back to the master processor
-        MPI_Ssend(&local_image[j*height], height, MPI_FLOAT, 0, 0, MPI_COMM_WORLD);
+        MPI_Ssend(&local_image[i*height], height, MPI_FLOAT, 0, 0, MPI_COMM_WORLD);
       }
-    }else
-    {
-    for(int j=1; j<local_ncols+1; ++j)
-      { //send back to the master processor
-        MPI_Ssend(&local_image[j*height], height, MPI_FLOAT, 0, 0, MPI_COMM_WORLD);
-    }
-    
-   }
   }
   if (rank == MASTER)
   {
@@ -348,6 +315,8 @@ int main(int argc, char* argv[])
     printf("With %d processes\n", size);
 
     output_image(OUTPUT_FILE, nx, ny, width, height,final_image);
+
+  
     // for(int i = 0; i<1026;i++)
     //    printf("number: %f \n",final_image[i+0*1026]);
     
@@ -384,7 +353,7 @@ int main(int argc, char* argv[])
  // free(tmp_image);
 }
 
-void stencil(const int nx, const int ny, float * restrict image, float * restrict tmp_image)
+void stencil(const int nx, const int ny, float *  image, float *  tmp_image)
 { // local_ncols, height, local_image, tmp_local_image
   // first row
   //need condider the different ranks 0
@@ -396,11 +365,11 @@ void stencil(const int nx, const int ny, float * restrict image, float * restric
     for (int j = 1; j < ny-1 ; ++j) {
        //tp_row = image[j     + i       * ny] * 3.0f/5.0f + image[j - 1 + i       * ny] * 0.5f/5.0f + image[j + 1 + i       * ny] * 0.5f/5.0f;
        //tp_col = image[j     + (i - 1) * ny] * 0.5f/5.0f + image[j     + (i + 1) * ny] * 0.5f/5.0f;
-      tmp_image[j + i * ny] =  image[j     + i       * ny] * 3.0 / 5.0;
-      tmp_image[j + i * ny] += image[j     + (i - 1) * ny] * 0.5 / 5.0;
-      tmp_image[j + i * ny] += image[j     + (i + 1) * ny] * 0.5 / 5.0;
-      tmp_image[j + i * ny] += image[j - 1 + i       * ny] * 0.5 / 5.0;
-      tmp_image[j + i * ny] += image[j + 1 + i       * ny] * 0.5 / 5.0;
+      tmp_image[j + i * ny] =  image[j     + i       * ny] * 3.0f / 5.0f;
+      tmp_image[j + i * ny] += image[j     + (i - 1) * ny] * 0.5f / 5.0f;
+      tmp_image[j + i * ny] += image[j     + (i + 1) * ny] * 0.5f / 5.0f;
+      tmp_image[j + i * ny] += image[j - 1 + i       * ny] * 0.5f / 5.0f;
+      tmp_image[j + i * ny] += image[j + 1 + i       * ny] * 0.5f / 5.0f;
     //  tmp_image[j + i * ny] = tp_row + tp_col;
     }
   }
