@@ -32,13 +32,12 @@ int main(int argc, char* argv[])
   MPI_Init( &argc, &argv );
   MPI_Comm_size( MPI_COMM_WORLD, &size );
   MPI_Comm_rank( MPI_COMM_WORLD, &rank );
-  printf(" ***The total size is  %d !!! ***** !\n",size);
+  // printf(" ***The total size is  %d !!! ***** !\n",size);
   // Check usage
   if (argc != 4) {
     fprintf(stderr, "Usage: %s nx ny niters\n", argv[0]);
     exit(EXIT_FAILURE);
   }
-
   // Initiliase problem dimensions from command line arguments
   int nx = atoi(argv[1]);
   int ny = atoi(argv[2]);
@@ -67,7 +66,31 @@ int main(int argc, char* argv[])
   float* image = malloc(sizeof(float) * width * height);
   float* tmp_image = malloc(sizeof(float) * width * height);
   float* final_image = malloc(sizeof(float) * width * height);
+  // Set the input image
+  init_image(nx, ny, width, height, image, tmp_image);
+  // If only one processor , perform as serial code
+  //
+  if (size == 1){
+    double tic = wtime();
+    for (int t = 0; t < niters; ++t) {
+      stencil(width, height, image, tmp_image);
+      stencil(width, height, tmp_image, image);
+    }
+    double toc = wtime();
+    // Output
+    printf("------------------------------------\n");
+    printf(" runtime: %lf s\n", toc - tic);
+    printf("------------------------------------\n");
 
+    output_image(OUTPUT_FILE, nx, ny, width, height, image);
+
+    free(image);
+    free(tmp_image);
+    free(final_image);
+
+    return EXIT_SUCCESS;
+  }
+  // If hava more than one processor, perform by using mpi
   // Allocate the local image and local temp image
   /*Need to add 2 for halo exchanges*/
   if (rank == MASTER)  //Add only one for rank 0 and rank size-1
@@ -75,30 +98,22 @@ int main(int argc, char* argv[])
   local_image = (float*) malloc (sizeof(float*) * local_nrows * (local_ncols + 1));
   tmp_local_image = (float*) malloc (sizeof(float*) * local_nrows * (local_ncols + 1));
   local_ncole_cal = local_ncols + 1;
-  printf(" The rank split %d successful!\n",rank);
+  // printf(" The rank split %d successful!\n",rank);
   }else if (rank == (size -1))
   {
   local_image = (float*) malloc (sizeof(float*) * local_nrows * (local_ncols + 1));
   tmp_local_image = (float*) malloc (sizeof(float*) * local_nrows * (local_ncols + 1));
   local_ncole_cal = local_ncols + 1;
-  printf(" The rank split %d successful!\n",rank);
+  // printf(" The rank split %d successful!\n",rank);
   }else
   {
   local_image = (float*) malloc (sizeof(float*) * local_nrows * (local_ncols + 2));
   tmp_local_image = (float*) malloc (sizeof(float*) * local_nrows * (local_ncols + 2));
   local_ncole_cal = local_ncols + 2;
-  printf(" The rank split %d successful!\n",rank);
+  // printf(" The rank split %d successful!\n",rank);
   }
-
-
-
-
-  
   /****************************** initialize **********************************/
-  printf(" ***The rank %d initialize begin *****/n !\n",rank);
-  // Set the input image
-  init_image(nx, ny, width, height, image, tmp_image);
-
+  // printf(" ***The rank %d initialize begin *****/n !\n",rank);
   //initialize the local some boundary for grid
   if (rank == MASTER)
   {
@@ -110,7 +125,7 @@ int main(int argc, char* argv[])
         
       }
     }
-   printf(" ***The rank %d initialize success ***** !\n",rank);
+  //  printf(" ***The rank %d initialize success ***** !\n",rank);
   }else if (rank == (size -1) )
   {
   // the last block just add one new halo
@@ -122,7 +137,7 @@ int main(int argc, char* argv[])
       }
     
   }
-  printf(" ***The rank %d initialize success ***** !\n",rank);
+  // printf(" ***The rank %d initialize success ***** !\n",rank);
   }else 
   {
   // inter blocks
@@ -133,16 +148,16 @@ int main(int argc, char* argv[])
     }
 
   }
-  printf(" ***The rank %d initialize success ***** !\n",rank);
+  // printf(" ***The rank %d initialize success ***** !\n",rank);
   }
 
   /****************************** Asm the halo before the stencil **********************************/
    ///SEND and Receive
    //send left, receive right
-  printf(" The initial Halo begin");
+  // printf(" The initial Halo begin");
   if (rank != 0)
   {
-    printf(" ***The rank %d send left successful ***** !\n",rank);
+    // printf(" ***The rank %d send left successful ***** !\n",rank);
     MPI_Ssend(&local_image[1*height], height, MPI_FLOAT, left, 0, MPI_COMM_WORLD);
   }
   if (rank != size-1)
@@ -150,11 +165,11 @@ int main(int argc, char* argv[])
     if (rank == MASTER){
        
        MPI_Recv(&local_image[(local_ncols)*height], height, MPI_FLOAT, right, 0, MPI_COMM_WORLD, &status);
-       printf(" ***The rank %d receive right successful ***** !\n",rank);
+      //  printf(" ***The rank %d receive right successful ***** !\n",rank);
     }else{
       
        MPI_Recv(&local_image[(local_ncols+1)*height], height, MPI_FLOAT, right, 0, MPI_COMM_WORLD, &status);
-       printf(" ***The rank %d receive right successful ***** !\n",rank); 
+      //  printf(" ***The rank %d receive right successful ***** !\n",rank); 
     }
 
   }
@@ -163,19 +178,19 @@ int main(int argc, char* argv[])
   {
     if (rank == 0){
     MPI_Ssend(&local_image[(local_ncols-1)*height], height, MPI_FLOAT, right, 0, MPI_COMM_WORLD);
-    printf(" ***The rank %d send right successful ***** !\n",rank); 
+    // printf(" ***The rank %d send right successful ***** !\n",rank); 
     }else{
     MPI_Ssend(&local_image[(local_ncols)*height], height, MPI_FLOAT, right, 0, MPI_COMM_WORLD);
-    printf(" ***The rank %d send right successful ***** !\n",rank); 
+    // printf(" ***The rank %d send right successful ***** !\n",rank); 
     }
     
   }
   if (rank != 0)
   {
     MPI_Recv(&local_image[0], height, MPI_FLOAT, left, 0, MPI_COMM_WORLD, &status);
-    printf(" ***The rank %d receive left successful ***** !\n",rank); 
+    // printf(" ***The rank %d receive left successful ***** !\n",rank); 
   }
-  printf(" The initial Halo successful \n!");
+  // printf(" The initial Halo successful \n!");
 
 
   /*********************************************************************
@@ -186,14 +201,12 @@ int main(int argc, char* argv[])
   double tic = wtime();
   for (int t = 0; t < niters; ++t)
   { 
-    printf(" *** The rank %d 's %d interate begin ***** !\n",rank,t); 
+    // printf(" *** The rank %d 's %d interate begin ***** !\n",rank,t); 
 
     //////////////////////stencil first//////////////////
     stencil(local_ncole_cal, height, local_image, tmp_local_image);
-    printf(" *** The rank %d 's %d interate first calucate successful! ***** !\n",rank,t);
+    // printf(" *** The rank %d 's %d interate first calucate successful! ***** !\n",rank,t);
     /////////////////////exchange halos//////////////////////
-    
-
     //send left and receive right
     if (rank != MASTER)
     {
@@ -226,16 +239,13 @@ int main(int argc, char* argv[])
 
 
     
-    ///////////////////////stencil second///////////////////////////
-    
+    ///////////////////////stencil second/////////////////////////// 
       stencil(local_ncole_cal, height, tmp_local_image, local_image);
-      printf(" *** The rank %d 's %d interate second calucate successful! ***** !\n",rank,t);
-
-
+      // printf(" *** The rank %d 's %d interate second calucate successful! ***** !\n",rank,t);
       ////send left and receive right
       if (rank != MASTER)
       {
-        printf(" ***The rank %d send left successful ***** !\n",rank);
+        // printf(" ***The rank %d send left successful ***** !\n",rank);
         MPI_Ssend(&local_image[1*height], height, MPI_FLOAT, left, 0, MPI_COMM_WORLD);
       }
       if (rank != size-1)
@@ -243,11 +253,11 @@ int main(int argc, char* argv[])
         if (rank == MASTER){
           
           MPI_Recv(&local_image[(local_ncols)*height], height, MPI_FLOAT, right, 0, MPI_COMM_WORLD, &status);
-          printf(" ***The rank %d receive right successful ***** !\n",rank);
+          // printf(" ***The rank %d receive right successful ***** !\n",rank);
         }else{
           
           MPI_Recv(&local_image[(local_ncols+1)*height], height, MPI_FLOAT, right, 0, MPI_COMM_WORLD, &status);
-          printf(" ***The rank %d receive right successful ***** !\n",rank); 
+          // printf(" ***The rank %d receive right successful ***** !\n",rank); 
         }
       }
       //send right and receive left
@@ -255,18 +265,18 @@ int main(int argc, char* argv[])
       {
         if (rank == MASTER){
         MPI_Ssend(&local_image[(local_ncols-1)*height], height, MPI_FLOAT, right, 0, MPI_COMM_WORLD);
-        printf(" ***The rank %d send right successful ***** !\n",rank); 
+        // printf(" ***The rank %d send right successful ***** !\n",rank); 
         }else{
         MPI_Ssend(&local_image[(local_ncols)*height], height, MPI_FLOAT, right, 0, MPI_COMM_WORLD);
-        printf(" ***The rank %d send right successful ***** !\n",rank); 
+        // printf(" ***The rank %d send right successful ***** !\n",rank); 
         }
       }
       if (rank != 0)
       {
         MPI_Recv(&local_image[0], height, MPI_FLOAT, left, 0, MPI_COMM_WORLD, &status);
-        printf(" ***The rank %d receive left successful ***** !\n",rank); 
+        // printf(" ***The rank %d receive left successful ***** !\n",rank); 
       }
-    printf(" *** The rank %d 's %d interate successful ***** !\n",rank,t);
+    // printf(" *** The rank %d 's %d interate successful ***** !\n",rank,t);
 
     
    
@@ -280,7 +290,7 @@ int main(int argc, char* argv[])
   ///注意tmp的值
   //Collect result
   //tmp_local_image[135] = 77;
-    if (rank == MASTER) 
+  if (rank == MASTER) 
     { // need collect the left halo
     for(int j=0; j<local_ncols; ++j){
       for(int i=0;i<local_nrows; ++i) 
@@ -297,8 +307,6 @@ int main(int argc, char* argv[])
         {
           MPI_Recv(&final_image[((rank_number*(width/size)-1)+j)*height], height, MPI_FLOAT, rank_number, 0, MPI_COMM_WORLD, &status);
         }
-
-      
     }
   }
   else
