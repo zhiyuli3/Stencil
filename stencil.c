@@ -24,15 +24,15 @@ int main(int argc, char* argv[])
   int local_nrows;       /* number of rows apportioned to this rank */
   int local_ncols;       /* number of columns apportioned to this rank */
   int local_ncole_cal;
-  float* local_image;    /* local image grid */
-  float* tmp_local_image;  /*tmp local image grid*/
+  float *local_image;    /* local image grid */
+  float *tmp_local_image;  /*tmp local image grid*/
   /****************************************************************/
   //MPI_Init returns once it has started up processor
   //Get size of cohort and rank for this process
   MPI_Init( &argc, &argv );
   MPI_Comm_size( MPI_COMM_WORLD, &size );
   MPI_Comm_rank( MPI_COMM_WORLD, &rank );
-  printf(" ***The total size is  %d !!! ***** !\n",rank);
+  printf(" ***The total size is  %d !!! ***** !\n",size);
   // Check usage
   if (argc != 4) {
     fprintf(stderr, "Usage: %s nx ny niters\n", argv[0]);
@@ -225,7 +225,7 @@ int main(int argc, char* argv[])
     }
 
 
-
+    
     ///////////////////////stencil second///////////////////////////
     
       stencil(local_ncole_cal, height, tmp_local_image, local_image);
@@ -268,29 +268,31 @@ int main(int argc, char* argv[])
       }
     printf(" *** The rank %d 's %d interate successful ***** !\n",rank,t);
 
-   // if (rank == 0){
-    //for(int i = 0; i<1026;i++)
-    //   printf("The %d block has number: %f \n",i,local_image[i+1*1026]);
-    // }
+    
+   
+  //  if (rank == 0){
+  //   for(int i = 0; i<130;i++)
+  //     printf("The %d block has number: %f \n",i,tmp_local_image[135]);
+  //   }
   }
   double toc = wtime();
   ///
-  ///
+  ///注意tmp的值
   //Collect result
-
+  //tmp_local_image[135] = 77;
     if (rank == MASTER) 
     { // need collect the left halo
     for(int j=0; j<local_ncols; ++j){
       for(int i=0;i<local_nrows; ++i) 
       {
-        final_image[i+j*height] = local_image [i+j*height];
+        final_image[i+j*height] = local_image[i+j*height];
       }
     }
 
     for (int rank_number = 1; rank_number<size; ++rank_number)
     {
       int cols = calc_ncols_from_rank(rank_number, size, height);
-      if (rank_number != size - 1)
+      //if (rank_number != size - 1)
         for(int j=1; j<cols+1; ++j)
         {
           MPI_Recv(&final_image[((rank_number*(width/size)-1)+j)*height], height, MPI_FLOAT, rank_number, 0, MPI_COMM_WORLD, &status);
@@ -453,11 +455,12 @@ void output_image(const char* file_name, const int nx, const int ny,
       if (image[j + i * height] > maximum) maximum = image[j + i * height];
     }
   }
-
+   
   // Output image, converting to numbers 0-255
   for (int j = 1; j < ny + 1; ++j) {
     for (int i = 1; i < nx + 1; ++i) {
       fputc((char)(255.0f * image[j + i * height] / maximum), fp);
+      // fputc((char)(image[j + i * height]), fp);
     }
   }
 

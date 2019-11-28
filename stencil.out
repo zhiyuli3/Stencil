@@ -2036,3 +2036,9 @@ compute084
  runtime: 0.481027 s
 ------------------------------------
 With 3 processes
+slurmstepd: error: *** STEP 2826814.0 ON compute084 CANCELLED AT 2019-11-27T21:47:08 DUE TO TIME LIMIT ***
+slurmstepd: error: *** JOB 2826814 ON compute084 CANCELLED AT 2019-11-27T21:47:08 DUE TO TIME LIMIT ***
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+srun: got SIGCONT
+srun: forcing job termination
+srun: error: compute084: tasks 0-2: Terminated
