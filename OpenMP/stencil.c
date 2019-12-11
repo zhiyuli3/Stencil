@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
+#include <omp.h>
 
 // Define output file name
 #define OUTPUT_FILE "stencil.pgm"
@@ -38,13 +39,14 @@ int main(int argc, char* argv[])
   // Set the input image
   init_image(nx, ny, width, height, image, tmp_image);
 
+  //int num_threads = omp_num_
   // Call the stencil kernel
   double tic = wtime();
   for (int t = 0; t < niters; ++t) {
     stencil(nx, ny, width, height, image, tmp_image);
     //for(int i = 0; i<1026;i++)
      // printf("The %d block has number: %f \n",i,tmp_image[i+1*1026]);
-    //stencil(nx, ny, width, height, tmp_image, image);
+    stencil(nx, ny, width, height, tmp_image, image);
 
 
  
@@ -66,15 +68,42 @@ int main(int argc, char* argv[])
 void stencil(const int nx, const int ny, const int width, const int height,
              double* image, double* tmp_image)
 {
+  float tp_col, tp_row;
+//omp_set_num_threads(28);
+// printf("numbers of process: %d\n",omp_get_num_procs());
+// printf("numbers of threads: %d\n",omp_get_num_threads());
+// int tid, nthreads;
+// #pragma omp parallel private(tid)
+//   {
+//     /* Obtain thread number */
+//     tid = omp_get_thread_num();
+//     printf("Hello, world from thread = %d\n", tid);
+
+//     /* Only master thread does this */
+// #pragma omp master
+//     {
+//       nthreads = omp_get_num_threads();
+//       printf("Number of threads = %d\n", nthreads);
+//     }
+//   }
+#pragma omp parallel for private(tp_col,tp_row)
   for (int i = 1; i < ny + 1; ++i) {
     for (int j = 1; j < nx + 1; ++j) {
-      tmp_image[j + i * height] =  image[j     + i       * height] * 3.0 / 5.0;
-      tmp_image[j + i * height] += image[j     + (i - 1) * height] * 0.5 / 5.0;
-      tmp_image[j + i * height] += image[j     + (i + 1) * height] * 0.5 / 5.0;
-      tmp_image[j + i * height] += image[j - 1 + i       * height] * 0.5 / 5.0;
-      tmp_image[j + i * height] += image[j + 1 + i       * height] * 0.5 / 5.0;
+       tp_row = image[j     + i       * height] * 3.0f / 5.0f + image[j - 1 + i       * height] * 0.5f / 5.0f + image[j + 1 + i       * height] * 0.5f / 5.0f;
+       tp_col = image[j     + (i - 1) * height] * 0.5f / 5.0f + image[j     + (i + 1) * height] * 0.5f / 5.0f;
+       tmp_image[j + i * height] = tp_row + tp_col;
     }
   }
+
+  // for (int i = 1; i < ny + 1; ++i) {
+  //   for (int j = 1; j < nx + 1; ++j) {
+  //     tmp_image[j + i * height] =  image[j     + i       * height] * 3.0 / 5.0;
+  //     tmp_image[j + i * height] += image[j     + (i - 1) * height] * 0.5 / 5.0;
+  //     tmp_image[j + i * height] += image[j     + (i + 1) * height] * 0.5 / 5.0;
+  //     tmp_image[j + i * height] += image[j - 1 + i       * height] * 0.5 / 5.0;
+  //     tmp_image[j + i * height] += image[j + 1 + i       * height] * 0.5 / 5.0;
+  //   }
+  // }
 }
 
 // Create the input image
@@ -123,20 +152,19 @@ void output_image(const char* file_name, const int nx, const int ny,
   // Calculate maximum value of image
   // This is used to rescale the values
   // to a range of 0-255 for output
-  //double maximum = 0.0;
-  /*
+  double maximum = 0.0;
+  
   for (int j = 1; j < ny + 1; ++j) {
     for (int i = 1; i < nx + 1; ++i) {
       if (image[j + i * height] > maximum) maximum = image[j + i * height];
     }
   }
-  */
+  
 
   // Output image, converting to numbers 0-255
   for (int j = 1; j < ny + 1; ++j) {
     for (int i = 1; i < nx + 1; ++i) {
-      //fputc((char)(255.0 * image[j + i * height] / maximum), fp);
-      fputc((char)(image[j + i * height]), fp);
+      fputc((char)(255.0 * image[j + i * height] / maximum), fp);
     }
   }
 

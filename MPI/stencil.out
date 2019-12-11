@@ -1,68 +1,17 @@
-Running on host compute091.bc4.acrc.priv
-Time is Thu Nov 28 12:43:44 GMT 2019
-Directory is /mnt/storage/home/fh19804/Stencil
-Slurm job ID is 2829192
+Running on host compute088.bc4.acrc.priv
+Time is Tue Dec 10 18:22:46 GMT 2019
+Directory is /mnt/storage/home/fh19804/Stencil/MPI
+Slurm job ID is 2891097
 
 This job runs on the following machines:
-compute[091-092]
+compute[088-089]
 
- The rank  36 's block number: 18!
- The rank  0 's block number: 18!
- The rank  17 's block number: 18!
- The rank  21 's block number: 18!
- The rank  24 's block number: 18!
- The rank  29 's block number: 18!
- The rank  27 's block number: 18!
- The rank  33 's block number: 18!
- The rank  1 's block number: 18!
- The rank  34 's block number: 18!
- The rank  2 's block number: 18!
- The rank  37 's block number: 18!
- The rank  4 's block number: 18!
- The rank  39 's block number: 18!
- The rank  6 's block number: 18!
- The rank  40 's block number: 18!
- The rank  9 's block number: 18!
- The rank  41 's block number: 18!
- The rank  10 's block number: 18!
- The rank  42 's block number: 18!
- The rank  12 's block number: 18!
- The rank  45 's block number: 18!
- The rank  13 's block number: 18!
- The rank  50 's block number: 18!
- The rank  14 's block number: 18!
- The rank  31 's block number: 18!
- The rank  15 's block number: 18!
- The rank  32 's block number: 18!
- The rank  16 's block number: 18!
- The rank  38 's block number: 18!
- The rank  18 's block number: 18!
- The rank  43 's block number: 18!
- The rank  19 's block number: 18!
- The rank  44 's block number: 18!
- The rank  20 's block number: 18!
- The rank  46 's block number: 18!
- The rank  22 's block number: 18!
- The rank  47 's block number: 18!
- The rank  23 's block number: 18!
- The rank  48 's block number: 18!
- The rank  25 's block number: 18!
- The rank  49 's block number: 18!
- The rank  26 's block number: 18!
- The rank  51 's block number: 18!
- The rank  5 's block number: 18!
- The rank  52 's block number: 18!
- The rank  7 's block number: 18!
- The rank  53 's block number: 18!
- The rank  11 's block number: 18!
- The rank  54 's block number: 18!
- The rank  8 's block number: 18!
- The rank  55 's block number: 36!
- The rank  3 's block number: 18!
- The rank  30 's block number: 18!
- The rank  35 's block number: 18!
- The rank  28 's block number: 18!
+processor_1
 ------------------------------------
- runtime: 0.092519 s
+ runtime: 0.134953 s
 ------------------------------------
-With 56 processes
+processor_2
+------------------------------------
+ runtime: 0.100974 s
+------------------------------------
+With 2 processes

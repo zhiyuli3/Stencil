@@ -1,0 +1,13 @@
+Running on host compute093.bc4.acrc.priv
+Time is Tue Dec 10 23:59:10 GMT 2019
+Directory is /mnt/storage/home/fh19804/Stencil/OpenMP
+Slurm job ID is 2893013
+
+This job runs on the following machines:
+compute093
+
+Running 2 threads
+
+------------------------------------
+ runtime: 0.857137 s
+------------------------------------

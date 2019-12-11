@@ -1,7 +1,6 @@
 #!/bin/bash
-
 #SBATCH --nodes 1
-#SBATCH --ntasks-per-node 1
+# SBATCH --ntasks-per-node 1
 #SBATCH --partition veryshort
 #SBATCH --reservation COMS30005
 #SBATCH --account COMS30005
@@ -9,6 +8,8 @@
 #SBATCH --time 00:15:00
 #SBATCH --output stencil.out
 #SBATCH --exclusive
+
+module load languages/gcc/9.1.0
 
 # Print some information about the job
 echo "Running on host $(hostname)"
@@ -21,7 +22,9 @@ echo "$SLURM_JOB_NODELIST" | uniq
 echo
 
 # Enable using `srun` with Intel MPI
-export I_MPI_PMI_LIBRARY=/usr/lib64/libpmi.so
-
+# export I_MPI_PMI_LIBRARY=/usr/lib64/libpmi.so
+export OMP_NUM_THREADS=2
+echo "Running $OMP_NUM_THREADS threads"
+echo
 # Run the executable
 srun ./stencil 1024 1024 100

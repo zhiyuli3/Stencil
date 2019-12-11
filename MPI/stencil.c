@@ -56,7 +56,7 @@ int main(int argc, char* argv[])
   ** each rank gets all the rows, but a subset of the number of columns*/
   local_nrows = height;
   local_ncols = calc_ncols_from_rank(rank, size, width);
-  printf(" The rank  %d 's block number: %d!\n",rank,local_ncols);
+  // printf(" The rank  %d 's block number: %d!\n",rank,local_ncols);
   if (local_ncols < 1) {
     fprintf(stderr,"Error: too many processes:- local_ncols < 1\n");
     MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
@@ -98,23 +98,61 @@ int main(int argc, char* argv[])
   local_image = (float*) malloc (sizeof(float*) * local_nrows * (local_ncols + 1));
   tmp_local_image = (float*) malloc (sizeof(float*) * local_nrows * (local_ncols + 1));
   local_ncole_cal = local_ncols + 1;
+  #ifdef GATHER
+    for(int i = 0;i<(local_ncols+1)*local_nrows;i++)
+      local_image[i] = 0.0f;
+  #else
+  #endif
   // printf(" The rank split %d successful!\n",rank);
   }else if (rank == (size -1))
   {
   local_image = (float*) malloc (sizeof(float*) * local_nrows * (local_ncols + 1));
   tmp_local_image = (float*) malloc (sizeof(float*) * local_nrows * (local_ncols + 1));
   local_ncole_cal = local_ncols + 1;
+  #ifdef GATHER
+    for(int i = 0;i<(local_ncols+1)*local_nrows;i++)
+      local_image[i] = 0.0f;
+  #else
+  #endif
   // printf(" The rank split %d successful!\n",rank);
   }else
   {
   local_image = (float*) malloc (sizeof(float*) * local_nrows * (local_ncols + 2));
   tmp_local_image = (float*) malloc (sizeof(float*) * local_nrows * (local_ncols + 2));
   local_ncole_cal = local_ncols + 2;
+  #ifdef GATHER
+    for(int i = 0;i<(local_ncols+2)*local_nrows;i++)
+      local_image[i] = 0.0f;
+  #else
+  #endif
   // printf(" The rank split %d successful!\n",rank);
   }
   /****************************** initialize **********************************/
-  // printf(" ***The rank %d initialize begin *****/n !\n",rank);
+  #ifdef GATHER
+    double ini_tic = wtime();
+    int *displs; //Use to calculate the offset of the scatter and gather
+    int *sendcounts; //Use to calculate the number of the scatter and gather
+    displs = (int *) malloc (sizeof (int) * size);
+    sendcounts = (int *) malloc (sizeof (int) * size);
+    for (int i = 0; i <size; i++){
+    int cal_tmp = calc_ncols_from_rank(i, size, width);
+    sendcounts[i] = cal_tmp * height; 
+    displs[i] = i * local_ncols * height;
+    if (i == 0){
+      sendcounts[i] -= 1;
+      displs[i] += height;
+    }
+    if (i == size -1)
+      sendcounts[i] -= 1;
+    }
+    MPI_Scatterv(image,sendcounts,displs,MPI_FLOAT,&local_image[height],local_ncols * height,MPI_FLOAT,
+                  MASTER, MPI_COMM_WORLD);
+    double ini_toc = wtime();
+    // printf(" Using Gather function!\n");
+  #else
+    // printf(" Using manual gather function!\n");
   //initialize the local some boundary for grid
+  double ini_tic = wtime();
   if (rank == MASTER)
   {
   // the first block just add one new halo
@@ -150,7 +188,17 @@ int main(int argc, char* argv[])
   }
   // printf(" ***The rank %d initialize success ***** !\n",rank);
   }
-
+  double ini_toc = wtime();
+  #endif
+  //Evaluate the different types of initialize
+    if (rank == MASTER)
+  {
+    // Output
+    printf("------------------------------------\n");
+    printf(" runtime of the initilize: %lf s\n", ini_toc-ini_tic);
+    printf("------------------------------------\n");
+    printf("With %d processes\n", size);
+  }
   /****************************** Asm the halo before the stencil **********************************/
    ///SEND and Receive
    //send left, receive right
@@ -287,9 +335,20 @@ int main(int argc, char* argv[])
   }
   double toc = wtime();
   ///
-  ///注意tmp的值
   //Collect result
   //tmp_local_image[135] = 77;
+  #ifdef GATHER
+  int tmp_local_offset;
+  tmp_local_offset = (local_ncols) * height;
+  if (rank == MASTER)
+      tmp_local_offset = (local_ncols - 1) * height;
+  if (rank == size - 1)
+      tmp_local_offset = (local_ncols - 1) * height;
+  MPI_Gatherv(&local_image[height], tmp_local_offset, MPI_FLOAT,
+                final_image, sendcounts, displs,
+                MPI_FLOAT, MASTER, MPI_COMM_WORLD);
+  #else
+
   if (rank == MASTER) 
     { // need collect the left halo
     for(int j=0; j<local_ncols; ++j){
@@ -313,9 +372,13 @@ int main(int argc, char* argv[])
   { 
     for(int i=1; i<local_ncols+1; ++i)
       { //send back to the master processor
+
         MPI_Ssend(&local_image[i*height], height, MPI_FLOAT, 0, 0, MPI_COMM_WORLD);
       }
   }
+
+  #endif
+
   if (rank == MASTER)
   {
     // Output
@@ -325,10 +388,6 @@ int main(int argc, char* argv[])
     printf("With %d processes\n", size);
 
     output_image(OUTPUT_FILE, nx, ny, width, height,final_image);
-
-  
-    // for(int i = 0; i<1026;i++)
-    //    printf("number: %f \n",final_image[i+0*1026]);
     
   }
 
@@ -370,17 +429,17 @@ void stencil(const int nx, const int ny, float *  image, float *  tmp_image)
   //rank0: 0 1 2 3 4
   //         1 2 3
   //rnak inter: 0 1 
-  //float tp_col, tp_row;
+  float tp_col, tp_row;
   for (int i = 1; i < nx-1 ; ++i) {
     for (int j = 1; j < ny-1 ; ++j) {
-       //tp_row = image[j     + i       * ny] * 3.0f/5.0f + image[j - 1 + i       * ny] * 0.5f/5.0f + image[j + 1 + i       * ny] * 0.5f/5.0f;
-       //tp_col = image[j     + (i - 1) * ny] * 0.5f/5.0f + image[j     + (i + 1) * ny] * 0.5f/5.0f;
-      tmp_image[j + i * ny] =  image[j     + i       * ny] * 3.0f / 5.0f;
-      tmp_image[j + i * ny] += image[j     + (i - 1) * ny] * 0.5f / 5.0f;
-      tmp_image[j + i * ny] += image[j     + (i + 1) * ny] * 0.5f / 5.0f;
-      tmp_image[j + i * ny] += image[j - 1 + i       * ny] * 0.5f / 5.0f;
-      tmp_image[j + i * ny] += image[j + 1 + i       * ny] * 0.5f / 5.0f;
-    //  tmp_image[j + i * ny] = tp_row + tp_col;
+       tp_row = image[j     + i       * ny] * 3.0f/5.0f + image[j - 1 + i       * ny] * 0.5f/5.0f + image[j + 1 + i       * ny] * 0.5f/5.0f;
+       tp_col = image[j     + (i - 1) * ny] * 0.5f/5.0f + image[j     + (i + 1) * ny] * 0.5f/5.0f;
+      // tmp_image[j + i * ny] =  image[j     + i       * ny] * 3.0f / 5.0f;
+      // tmp_image[j + i * ny] += image[j     + (i - 1) * ny] * 0.5f / 5.0f;
+      // tmp_image[j + i * ny] += image[j     + (i + 1) * ny] * 0.5f / 5.0f;
+      // tmp_image[j + i * ny] += image[j - 1 + i       * ny] * 0.5f / 5.0f;
+      // tmp_image[j + i * ny] += image[j + 1 + i       * ny] * 0.5f / 5.0f;
+     tmp_image[j + i * ny] = tp_row + tp_col;
     }
   }
 }
