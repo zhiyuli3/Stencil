@@ -1,0 +1,40 @@
+Running on host compute084.bc4.acrc.priv
+Time is Sun Dec 15 10:29:49 GMT 2019
+Directory is /mnt/storage/home/fh19804/Stencil/MPI
+Slurm job ID is 2917175
+
+This job runs on the following machines:
+compute[084-085]
+
+------------------------------------
+ runtime of the initilize: 0.006281 s
+------------------------------------
+With 2 processes
+------------------------------------
+ runtime: 0.097019 s
+------------------------------------
+With 2 processes
+------------------------------------
+ runtime of the initilize: 0.011791 s
+------------------------------------
+With 4 processes
+------------------------------------
+ runtime: 0.046316 s
+------------------------------------
+With 4 processes
+------------------------------------
+ runtime of the initilize: 0.027067 s
+------------------------------------
+With 8 processes
+------------------------------------
+ runtime: 0.035014 s
+------------------------------------
+With 8 processes
+------------------------------------
+ runtime of the initilize: 0.120345 s
+------------------------------------
+With 16 processes
+------------------------------------
+ runtime: 0.019229 s
+------------------------------------
+With 16 processes

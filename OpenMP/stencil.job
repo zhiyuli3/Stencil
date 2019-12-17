@@ -5,8 +5,8 @@
 #SBATCH --reservation COMS30005
 #SBATCH --account COMS30005
 #SBATCH --job-name stencil
-#SBATCH --time 00:15:00
-#SBATCH --output stencil.out
+#SBATCH --time 00:55:00
+#SBATCH --output stencil_1024_2_openmp_2.log
 #SBATCH --exclusive
 
 module load languages/gcc/9.1.0
@@ -23,8 +23,17 @@ echo
 
 # Enable using `srun` with Intel MPI
 # export I_MPI_PMI_LIBRARY=/usr/lib64/libpmi.so
-export OMP_NUM_THREADS=2
-echo "Running $OMP_NUM_THREADS threads"
-echo
+# Loop the different thread
+L1=1024
+for ((i=1;i<=56;i++))
+do
+export OMP_NUM_THREADS=$i
+echo "Processor $OMP_NUM_THREADS"
 # Run the executable
-srun ./stencil 1024 1024 100
+srun ./stencil $L1 $L1 100
+srun ./stencil $L1 $L1 100
+srun ./stencil $L1 $L1 100
+srun ./stencil $L1 $L1 100
+srun ./stencil $L1 $L1 100
+done
+

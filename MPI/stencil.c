@@ -27,7 +27,6 @@ int main(int argc, char* argv[])
   float *local_image;    /* local image grid */
   float *tmp_local_image;  /*tmp local image grid*/
   /****************************************************************/
-  //MPI_Init returns once it has started up processor
   //Get size of cohort and rank for this process
   MPI_Init( &argc, &argv );
   MPI_Comm_size( MPI_COMM_WORLD, &size );
@@ -191,14 +190,14 @@ int main(int argc, char* argv[])
   double ini_toc = wtime();
   #endif
   //Evaluate the different types of initialize
-    if (rank == MASTER)
-  {
-    // Output
-    printf("------------------------------------\n");
-    printf(" runtime of the initilize: %lf s\n", ini_toc-ini_tic);
-    printf("------------------------------------\n");
-    printf("With %d processes\n", size);
-  }
+  //   if (rank == MASTER)
+  // {
+  //   // Output
+  //   printf("------------------------------------\n");
+  //   printf(" runtime of the initilize: %lf s\n", ini_toc-ini_tic);
+  //   printf("------------------------------------\n");
+  //   printf("With %d processes\n", size);
+  // }
   /****************************** Asm the halo before the stencil **********************************/
    ///SEND and Receive
    //send left, receive right
@@ -256,9 +255,10 @@ int main(int argc, char* argv[])
     // printf(" *** The rank %d 's %d interate first calucate successful! ***** !\n",rank,t);
     /////////////////////exchange halos//////////////////////
     //send left and receive right
+
     if (rank != MASTER)
     {
-      MPI_Send(&tmp_local_image[1*height], height, MPI_FLOAT, left, 0, MPI_COMM_WORLD);
+      MPI_Ssend(&tmp_local_image[1*height], height, MPI_FLOAT, left, 0, MPI_COMM_WORLD);
     }
     if (rank != size-1)
     {
@@ -278,7 +278,7 @@ int main(int argc, char* argv[])
         }else{
         MPI_Ssend(&tmp_local_image[(local_ncols)*height], height, MPI_FLOAT, right, 0, MPI_COMM_WORLD);
       }
-    //  MPI_Send(&tmp_local_image[(local_ncols)*height], height, MPI_FLOAT, right, 0, MPI_COMM_WORLD);
+    //  MPI_Ssend(&tmp_local_image[(local_ncols)*height], height, MPI_FLOAT, right, 0, MPI_COMM_WORLD);
     }
     if (rank != 0)
     {
@@ -335,6 +335,7 @@ int main(int argc, char* argv[])
   }
   double toc = wtime();
   ///
+
   //Collect result
   //tmp_local_image[135] = 77;
   #ifdef GATHER
@@ -385,9 +386,16 @@ int main(int argc, char* argv[])
     printf("------------------------------------\n");
     printf(" runtime: %lf s\n", toc-tic);
     printf("------------------------------------\n");
-    printf("With %d processes\n", size);
+    printf("Use %d processes\n", size);
 
     output_image(OUTPUT_FILE, nx, ny, width, height,final_image);
+  //   for(int i=0;i<height;i++){
+  //   printf("\n nros: %d\n",i);
+  //   for(int j=0;j<width;j++){
+  //   printf("%2.1f ", final_image[i*(ny+2)+j]);
+  //   }
+  // }
+
     
   }
 

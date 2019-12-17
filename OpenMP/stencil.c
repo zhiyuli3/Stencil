@@ -58,7 +58,7 @@ int main(int argc, char* argv[])
   printf(" runtime: %lf s\n", toc - tic);
   printf("------------------------------------\n");
 
-  output_image(OUTPUT_FILE, nx, ny, width, height, tmp_image);
+  //output_image(OUTPUT_FILE, nx, ny, width, height, tmp_image);
 
 
   free(image);
@@ -86,7 +86,7 @@ void stencil(const int nx, const int ny, const int width, const int height,
 //       printf("Number of threads = %d\n", nthreads);
 //     }
 //   }
-#pragma omp parallel for private(tp_col,tp_row)
+#pragma omp parallel for private(tp_col,tp_row) schedule(static)
   for (int i = 1; i < ny + 1; ++i) {
     for (int j = 1; j < nx + 1; ++j) {
        tp_row = image[j     + i       * height] * 3.0f / 5.0f + image[j - 1 + i       * height] * 0.5f / 5.0f + image[j + 1 + i       * height] * 0.5f / 5.0f;

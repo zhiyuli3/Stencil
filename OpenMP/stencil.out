@@ -1,13 +1,288 @@
-Running on host compute093.bc4.acrc.priv
-Time is Tue Dec 10 23:59:10 GMT 2019
+Running on host compute092.bc4.acrc.priv
+Time is Wed Dec 11 10:58:14 GMT 2019
 Directory is /mnt/storage/home/fh19804/Stencil/OpenMP
-Slurm job ID is 2893013
+Slurm job ID is 2894894
 
 This job runs on the following machines:
-compute093
+compute092
 
-Running 2 threads
-
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
 ------------------------------------
- runtime: 0.857137 s
+ runtime: 0.128052 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.079650 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.146020 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.139249 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.108146 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.094235 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.090880 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.124583 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.097924 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.117906 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.152818 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.094979 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.080791 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.130143 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.089955 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.078412 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.110500 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.080484 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.111212 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.101737 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.082709 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.112827 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.085135 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.085664 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.113677 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.133626 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.092436 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.087839 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.087933 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.109784 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.096504 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.142082 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.087081 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.107970 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.125305 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.153727 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.130342 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.097233 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.140411 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.141284 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.081709 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.100906 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.151724 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.090188 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.096652 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.107865 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.124615 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.089868 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.082188 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.105982 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.180583 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.199232 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.081430 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.084599 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.100823 s
+------------------------------------
+Processor i
+OMP: Warning #222: OMP_NUM_THREADS: Invalid symbols found. Check the value "i".
+------------------------------------
+ runtime: 0.164766 s
 ------------------------------------
