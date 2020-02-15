@@ -1,0 +1,2 @@
+# Stencil
+Coursework for HPC
