@@ -1,0 +1,39 @@
+#!/bin/bash
+#SBATCH --nodes 1
+# SBATCH --ntasks-per-node 1
+#SBATCH --partition veryshort
+#SBATCH --reservation COMS30005
+#SBATCH --account COMS30005
+#SBATCH --job-name stencil
+#SBATCH --time 00:55:00
+#SBATCH --output stencil_1024_2_openmp_2.log
+#SBATCH --exclusive
+
+module load languages/gcc/9.1.0
+
+# Print some information about the job
+echo "Running on host $(hostname)"
+echo "Time is $(date)"
+echo "Directory is $(pwd)"
+echo "Slurm job ID is $SLURM_JOB_ID"
+echo
+echo "This job runs on the following machines:"
+echo "$SLURM_JOB_NODELIST" | uniq
+echo
+
+# Enable using `srun` with Intel MPI
+# export I_MPI_PMI_LIBRARY=/usr/lib64/libpmi.so
+# Loop the different thread
+L1=1024
+for ((i=1;i<=56;i++))
+do
+export OMP_NUM_THREADS=$i
+echo "Processor $OMP_NUM_THREADS"
+# Run the executable
+srun ./stencil $L1 $L1 100
+srun ./stencil $L1 $L1 100
+srun ./stencil $L1 $L1 100
+srun ./stencil $L1 $L1 100
+srun ./stencil $L1 $L1 100
+done
+
